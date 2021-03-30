@@ -1,0 +1,198 @@
+
+IF
+	AreaCheck("%er_RedSheafL1%")
+	!Dead("Karlat")
+	Allegiance(Myself,NEUTRAL)
+	Allegiance("Karlat",ENEMY)
+	Global("SUFinchKarl", "GLOBAL", 0)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		SetGlobal("SUFinchKarl", "GLOBAL", 1)
+		Attack("Karlat")
+END
+
+IF
+	AreaCheck("%er_RedSheafL1%")
+	!Dead("Karlat")
+	Allegiance(Myself,NEUTRAL)
+	HPPercentLT(Player1,50)
+THEN
+	RESPONSE #100
+		ForceSpell(Player1,CLERIC_CURE_LIGHT_WOUNDS)
+END
+
+IF
+	AreaCheck("%er_RedSheafL1%")
+	!Dead("Karlat")
+	Allegiance(Myself,NEUTRAL)
+	Global("SUFinchKarl", "GLOBAL", 1)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate("Karlat",30)
+END
+
+IF
+	InParty(Myself)
+	Global("X#DreamTimerStarted","GLOBAL",0)
+THEN
+	RESPONSE #100
+		RealSetGlobalTimer("X#DreamTalk","GLOBAL",180)
+		SetGlobal("X#DreamTimerStarted","GLOBAL",1)
+END
+
+IF
+	Global("SUFinchImoenPrank","GLOBAL",1)
+	InParty(Myself)
+	InParty("%er_imoen%")
+	See("%er_imoen%")
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck("%er_imoen%",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+	RESPONSE #100
+		Interact("%er_imoen%")
+END
+
+IF
+	Global("SuFinchKhalidGlassesWake","GLOBAL",1)
+	InParty(Myself)
+	InParty("Khalid")
+	See("Khalid")
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck("Khalid",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+	RESPONSE #100
+		Interact("Khalid")
+END
+
+IF
+	Global("SuFinchXzarDreamWake","GLOBAL",1)
+	InParty(Myself)
+	InParty("Xzar")
+	See("Xzar")
+	CombatCounter(0)
+	!See([ENEMY])
+	!StateCheck("Xzar",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+THEN
+	RESPONSE #100
+		Interact("Xzar")
+END
+
+IF
+	Global("SUFinchYeslick2","GLOBAL",1)
+	Global("SUFinchTougherTweety", "LOCALS", 0)
+THEN
+	RESPONSE #100
+		SetGlobal("SUFinchTougherTweety", "LOCALS", 1)
+		SetPlayerSound(Myself,@62, BATTLE_CRY4)
+		SetPlayerSound(Myself,@63, BATTLE_CRY1)
+		SetPlayerSound(Myself,@64, BATTLE_CRY2)
+		SetPlayerSound(Myself,@65, BATTLE_CRY3)
+END
+
+IF
+	LevelGT(Myself, 4)
+	Global("SUFinchHeroLibrarian", "LOCALS", 0)
+THEN
+	RESPONSE #100
+		SetGlobal("SUFinchHeroLibrarian", "LOCALS", 1)
+		SetPlayerSound(Myself,@66, SELECT_COMMON2)
+END
+
+IF
+	InParty(Myself)
+	Global("SUFinchBook1Comment", "LOCALS", 0)
+	PartyHasItem("SUFBOOK1")
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END
+
+IF
+	InParty(Myself)
+	Global("SUFinchBook2Comment", "LOCALS", 0)
+	PartyHasItem("SUFBOOK2")
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END
+
+IF
+	InParty(Myself)
+	Global("SUFinchBook3Comment", "LOCALS", 0)
+	PartyHasItem("SUFBOOK3")
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END
+
+IF
+	InParty(Myself)
+	Global("SUFinchBook4Comment", "LOCALS", 0)
+	PartyHasItem("SUFBOOK4")
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END
+
+IF
+	InParty(Myself)
+	Global("SUFinchBookBComment", "LOCALS", 0)
+	PartyHasItem("SUFBOOKB")
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END
+
+IF
+	InParty(Myself)
+	Global("SUFinchBook5Comment", "LOCALS", 0)
+	PartyHasItem("SUFBOOK5")
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END 
+
+IF
+	InParty(Myself)
+	InParty("Garrick")
+	LevelGT("Garrick", 3)
+	See("Garrick")
+	!Dead("Garrick") 
+	!StateCheck("Garrick",CD_STATE_NOTVALID)
+	HPPercentLT("Garrick",20)
+	!HP("Garrick",1)
+	CombatCounter(0)
+	Global("SUFinchGarrick4","LOCALS",0)
+THEN
+	RESPONSE #100
+		Interact("Garrick")
+END
+
+IF
+	InParty(Myself)
+	CombatCounter(0)
+	Global("SUFinchQuestFailed", "GLOBAL",1)
+	Global("SUFinchPissed", "GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogueNoSet(Player1)
+END

@@ -1,0 +1,365 @@
+
+BACKUP ~FinchNPC/backup~
+AUTHOR ~llamababe@pocketplane.net~
+VERSION ~v4.0 BETA 7~
+README ~FinchNPC/FinchReadMe.html~
+
+ALWAYS
+  INCLUDE ~FinchNPC\lib\er_lib.tpa~
+  LAM bgee_language
+END
+
+LANGUAGE ~English~
+         ~english~
+         ~FinchNPC/tra/english/sufinch.TRA~
+LANGUAGE ~Francais~
+         ~french~
+         ~FinchNPC/tra/english/sufinch.TRA~
+         ~FinchNPC/tra/french/sufinch.TRA~
+LANGUAGE ~Espanol~
+         ~spanish~
+         ~FinchNPC/tra/english/sufinch.TRA~
+         ~FinchNPC/tra/spanish/sufinch.TRA~
+LANGUAGE ~German~
+         ~german~
+         ~FinchNPC/tra/english/sufinch.TRA~
+         ~FinchNPC/tra/german/sufinch.TRA~
+
+BEGIN @14
+
+REQUIRE_PREDICATE GAME_IS ~tutu tutu_totsc bgee bgt~ @1145
+
+// Adds CD_STATE_NOTVALID state
+APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
+UNLESS ~CD_STATE_NOTVALID~
+
+ADD_JOURNAL @68 @812 @802 @67 USING ~%er_tra_path%/english/sufinch.tra~
+                                    ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+
+COPY ~FinchNPC/cre/sufinchi.cre~ ~override/sufinchi.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY INITIAL_MEETING @1
+  WRITE_LONG SPELL_DISRUPTED 0xffffffff
+  WRITE_LONG PICKED_POCKET 0xffffffff
+  WRITE_LONG HIDDEN_IN_SHADOWS 0xffffffff
+  WRITE_LONG SET_A_TRAP 0xffffffff
+  WRITE_BYTE 0x237 2 // set SEX to female
+  LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+
+COPY ~FinchNPC/cre/sufinch1.cre~ ~override/sufinch1.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY MORALE @2
+  SAY HAPPY @3
+  SAY UNHAPPY_ANNOYED @4
+  SAY UNHAPPY_SERIOUS @5
+  SAY UNHAPPY_BREAKING @6
+  SAY LEADER @7
+  SAY TIRED @8
+  SAY BORED @9
+  SAY BATTLE_CRY1 @10
+  SAY BATTLE_CRY2 @11
+  SAY BATTLE_CRY3 @12
+  SAY BATTLE_CRY4 @13
+  SAY DAMAGE ~~ [SUFINC13] //"gasp"
+  SAY DYING ~~ [SUFINC14] //Scream
+  SAY HURT @16
+  SAY AREA_FOREST @17
+  SAY AREA_CITY @18
+  SAY AREA_DUNGEON @19
+  SAY AREA_DAY @20
+  SAY AREA_NIGHT @21
+  SAY SELECT_COMMON1 @22
+  SAY SELECT_COMMON2 @23
+  SAY SELECT_COMMON3 @24
+  SAY SELECT_COMMON4 @25
+  SAY SELECT_COMMON5 @26
+  SAY SELECT_COMMON6 @27
+  SAY SELECT_ACTION1 @28
+  SAY SELECT_ACTION2 @29
+  SAY SELECT_ACTION3 @30
+  SAY SELECT_ACTION4 @31
+  SAY SELECT_ACTION5 @32
+  SAY SELECT_ACTION6 @33
+  SAY SELECT_ACTION7 @34
+  SAY SELECT_RARE1 @35
+  SAY SELECT_RARE2 @36
+  SAY CRITICAL_HIT @37
+  SAY CRITICAL_MISS @38
+  SAY TARGET_IMMUNE @39
+  SAY SPELL_DISRUPTED @40
+  SAY INVENTORY_FULL @41
+  SAY PICKED_POCKET @42
+  SAY HIDDEN_IN_SHADOWS @43
+  SAY SET_A_TRAP @44
+  SAY BIO @45
+  WRITE_BYTE 0x237 2 // set SEX to female
+  LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+
+COPY ~FinchNPC/cre/sufinch2.cre~ ~override/sufinch2.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY MORALE @2
+  SAY HAPPY @3
+  SAY UNHAPPY_ANNOYED @4
+  SAY UNHAPPY_SERIOUS @5
+  SAY UNHAPPY_BREAKING @6
+  SAY LEADER @7
+  SAY TIRED @8
+  SAY BORED @9
+  SAY BATTLE_CRY1 @10
+  SAY BATTLE_CRY2 @11
+  SAY BATTLE_CRY3 @12
+  SAY BATTLE_CRY4 @13
+  SAY DAMAGE ~~ [SUFINC13] //"gasp"
+  SAY DYING ~~ [SUFINC14] //Scream
+  SAY HURT @16
+  SAY AREA_FOREST @17
+  SAY AREA_CITY @18
+  SAY AREA_DUNGEON @19
+  SAY AREA_DAY @20
+  SAY AREA_NIGHT @21
+  SAY SELECT_COMMON1 @22
+  SAY SELECT_COMMON2 @23
+  SAY SELECT_COMMON3 @24
+  SAY SELECT_COMMON4 @25
+  SAY SELECT_COMMON5 @26
+  SAY SELECT_COMMON6 @27
+  SAY SELECT_ACTION1 @28
+  SAY SELECT_ACTION2 @29
+  SAY SELECT_ACTION3 @30
+  SAY SELECT_ACTION4 @31
+  SAY SELECT_ACTION5 @32
+  SAY SELECT_ACTION6 @33
+  SAY SELECT_ACTION7 @34
+  SAY SELECT_RARE1 @35
+  SAY SELECT_RARE2 @36
+  SAY CRITICAL_HIT @37
+  SAY CRITICAL_MISS @38
+  SAY TARGET_IMMUNE @39
+  SAY SPELL_DISRUPTED @40
+  SAY INVENTORY_FULL @41
+  SAY PICKED_POCKET @42
+  SAY HIDDEN_IN_SHADOWS @43
+  SAY SET_A_TRAP @44
+  SAY BIO @45
+  WRITE_BYTE 0x237 2 // set SEX to female
+  LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+
+COPY ~FinchNPC/cre/sufinch4.cre~ ~override/sufinch4.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY MORALE @2
+  SAY HAPPY @3
+  SAY UNHAPPY_ANNOYED @4
+  SAY UNHAPPY_SERIOUS @5
+  SAY UNHAPPY_BREAKING @6
+  SAY LEADER @7
+  SAY TIRED @8
+  SAY BORED @9
+  SAY BATTLE_CRY1 @10
+  SAY BATTLE_CRY2 @11
+  SAY BATTLE_CRY3 @12
+  SAY BATTLE_CRY4 @13
+  SAY DAMAGE ~~ [SUFINC13] //"gasp"
+  SAY DYING ~~ [SUFINC14] //Scream
+  SAY HURT @16
+  SAY AREA_FOREST @17
+  SAY AREA_CITY @18
+  SAY AREA_DUNGEON @19
+  SAY AREA_DAY @20
+  SAY AREA_NIGHT @21
+  SAY SELECT_COMMON1 @22
+  SAY SELECT_COMMON2 @23
+  SAY SELECT_COMMON3 @24
+  SAY SELECT_COMMON4 @25
+  SAY SELECT_COMMON5 @26
+  SAY SELECT_COMMON6 @27
+  SAY SELECT_ACTION1 @28
+  SAY SELECT_ACTION2 @29
+  SAY SELECT_ACTION3 @30
+  SAY SELECT_ACTION4 @31
+  SAY SELECT_ACTION5 @32
+  SAY SELECT_ACTION6 @33
+  SAY SELECT_ACTION7 @34
+  SAY SELECT_RARE1 @35
+  SAY SELECT_RARE2 @36
+  SAY CRITICAL_HIT @37
+  SAY CRITICAL_MISS @38
+  SAY TARGET_IMMUNE @39
+  SAY SPELL_DISRUPTED @40
+  SAY INVENTORY_FULL @41
+  SAY PICKED_POCKET @42
+  SAY HIDDEN_IN_SHADOWS @43
+  SAY SET_A_TRAP @44
+  SAY BIO @45
+  WRITE_BYTE 0x237 2 // set SEX to female
+  LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+
+COPY ~FinchNPC/cre/sutrask.cre~ ~override/sutrask.cre~
+  SAY NAME1 @46
+  SAY NAME2 @46
+
+ACTION_IF FILE_EXISTS_IN_GAME ~%er_bimoen%.dlg~
+ THEN BEGIN
+END
+ELSE BEGIN
+  COMPILE EVALUATE_BUFFER ~FinchNPC/bimoen.d~
+END
+
+APPEND ~Interdia.2da~
+~%er_uimoen%        %er_bimoen%~
+UNLESS ~%er_uimoen%~
+
+//Go out on a limb and try to assign some death variables
+
+COPY_EXISTING ~%er_tutu%NOBL2.cre~ ~override/%er_tutu%NOBL2.cre~
+  WRITE_ASCII 0x0280 ~NOBL2~
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~%er_tutu%NOBW2.cre~ ~override/%er_tutu%NOBW2.cre~
+  WRITE_ASCII 0x0280 ~NOBW2~
+BUT_ONLY_IF_IT_CHANGES
+
+COMPILE EVALUATE_BUFFER ~FinchNPC/d/sufinch.d~
+  USING ~%er_tra_path%/english/sufinch.tra~
+        ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+
+COMPILE EVALUATE_BUFFER ~FinchNPC/d/sufinchi.d~
+  USING ~%er_tra_path%/english/sufinch.tra~
+        ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+
+COMPILE EVALUATE_BUFFER ~FinchNPC/d/bsufinch.d~
+  USING ~%er_tra_path%/english/sufinch.tra~
+        ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+
+COMPILE EVALUATE_BUFFER ~FinchNPC/d/sufinchj.d~
+  USING ~%er_tra_path%/english/sufinch.tra~
+        ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+
+//Mur'Neth-Finch banter
+ACTION_IF FILE_EXISTS ~override/BA#MURN.DLG~ AND NOT FILE_EXISTS
+~override/FINCHMURNETH.XXX~
+       THEN BEGIN
+       COPY_EXISTING ~SW1H01.ITM~ ~override/FINCHMURNETH.XXX~
+       COMPILE EVALUATE_BUFFER ~FinchNPC/d/xmodfinchmurneth.d~
+         USING ~%er_tra_path%/english/sufinch.tra~
+               ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+END
+
+//Indira-Finch banter
+ACTION_IF FILE_EXISTS ~override/J#INDIB.DLG~ AND NOT FILE_EXISTS
+~override/INDIRAFINCH.XXX~
+       THEN BEGIN
+       COPY_EXISTING ~SW1H01.ITM~ ~override/INDIRAFINCH.XXX~
+       COMPILE EVALUATE_BUFFER ~FinchNPC/d/xmodfinchindi.d~
+         USING ~%er_tra_path%/english/sufinch.tra~
+               ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+END
+
+//TotSC interjections
+ACTION_IF FILE_EXISTS ~override/%er_tutu%ANDRIS.dlg~
+       THEN BEGIN
+       COMPILE EVALUATE_BUFFER ~FinchNPC/d/sufinch2.d~
+         USING ~%er_tra_path%/english/sufinch.tra~
+               ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+END
+
+COPY ~FinchNPC/graphics~ ~override~
+COPY ~FinchNPC/graphics/%er_port%~ ~override~
+COPY ~FinchNPC/items/sufbag1.sto~ ~override/sufbag1.sto~
+COPY ~FinchNPC/items/sufbag1.itm~ ~override/sufbag1.itm~
+  SAY NAME1 @48
+  SAY NAME2 @48
+  SAY DESC @49
+
+COPY ~FinchNPC/items/sufbook1.itm~ ~override/sufbook1.itm~
+  SAY NAME1 @50
+  SAY NAME2 @50
+  SAY DESC @51
+
+COPY ~FinchNPC/items/sufbook2.itm~ ~override/sufbook2.itm~
+  SAY NAME1 @52
+  SAY NAME2 @52
+  SAY DESC @53
+
+COPY ~FinchNPC/items/sufbook3.itm~ ~override/sufbook3.itm~
+  SAY NAME1 @54
+  SAY NAME2 @54
+  SAY DESC @55
+
+COPY ~FinchNPC/items/sufbook4.itm~ ~override/sufbook4.itm~
+  SAY NAME1 @56
+  SAY NAME2 @56
+  SAY DESC @57
+
+COPY ~FinchNPC/items/sufbook5.itm~ ~override/sufbook5.itm~
+  SAY NAME1 @58
+  SAY NAME2 @58
+  SAY DESC @59
+
+COPY ~FinchNPC/items/sufbookA.itm~ ~override/sufbookA.itm~
+  SAY NAME1 @1146
+  SAY NAME2 @1146
+  SAY DESC @1147
+
+COPY ~FinchNPC/items/sufbookB.itm~ ~override/sufbookB.itm~
+  SAY NAME1 @1148
+  SAY NAME2 @1148
+  SAY DESC @1149
+
+//COPY ~FinchNPC/items/sufglass.spl~ ~override/sufglass.spl~
+//COPY ~FinchNPC/items/sufglass.eff~ ~override/sufglass.eff~
+//COPY ~FinchNPC/items/sufglas2.eff~ ~override/sufglas2.eff~
+//COPY ~FinchNPC/items/sufglass.itm~ ~override/sufglass.itm~
+//  SAY NAME1 @60
+//SAY NAME2 @60
+//  SAY DESC @61
+
+// Shameless editing of Glasses of Identification
+ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+  COPY ~FinchNPC/items/misc3p.itm~ ~override/misc3p.itm~
+    LAUNCH_PATCH_MACRO ~ER_PATCH_GLASSES~
+END ELSE BEGIN
+  COPY_EXISTING ~misc3p.itm~ ~override/misc3p.itm~
+    LAUNCH_PATCH_MACRO ~ER_PATCH_GLASSES~
+END
+
+//COPY_EXISTING ~%er_RedSheafL1%.are~ ~override/%er_RedSheafL1%.are~
+//  WRITE_EVALUATED_ASCII 0x94 ~%er_3357%~
+//BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~%er_JenkalsHomeL2%.are~ ~override/%er_JenkalsHomeL2%.are~
+  WRITE_EVALUATED_ASCII 0x94 ~%er_4002%~
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~%er_NashkelManorL1%.are~ ~override/%er_NashkelManorL1%.are~
+  WRITE_EVALUATED_ASCII 0x94 ~%er_4804%~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_BOTTOM ~%er_4900%.bcs~ ~FinchNPC/scripts/append_ar4900.baf~ EVALUATE_BUFFER
+EXTEND_TOP ~%er_1803%.bcs~ ~FinchNPC/scripts/append_ar1803.baf~ EVALUATE_BUFFER
+EXTEND_TOP ~%er_1900%.bcs~ ~FinchNPC/scripts/append_ar1900.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~%er_3300%.bcs~ ~FinchNPC/scripts/append_ar3300.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~%er_2400%.bcs~ ~FinchNPC/scripts/append_ar2400.baf~ EVALUATE_BUFFER
+EXTEND_BOTTOM ~%er_2600%.bcs~ ~FinchNPC/scripts/append_ar2600.baf~ EVALUATE_BUFFER
+EXTEND_TOP ~%er_4002%.bcs~ ~FinchNPC/scripts/append_ar4002.baf~ EVALUATE_BUFFER
+EXTEND_TOP ~%er_4804%.bcs~ ~FinchNPC/scripts/append_ar4804.baf~ EVALUATE_BUFFER
+EXTEND_TOP ~J#INDI.bcs~ ~FinchNPC/scripts/append_j#indi.baf~ EVALUATE_BUFFER
+
+ACTION_IF GAME_IS ~bgt~ THEN BEGIN
+  EXTEND_TOP ~aram00.bcs~ ~FinchNPC/scripts/append_aram00.baf~
+END
+
+COMPILE EVALUATE_BUFFER ~FinchNPC/scripts/sufinch.baf~
+COMPILE EVALUATE_BUFFER ~FinchNPC/scripts/sufinchd.baf~
+
+APPEND ~PDialog.2da~
+~SUFINCH          SUFINCHP          SUFINCHJ          SUFINCHD  ~
+UNLESS ~SUFINCH~
+APPEND ~Interdia.2da~
+~SUFINCH       BSUFINCH~
+UNLESS ~SUFINCH~
+
+LAF HANDLE_AUDIO END

@@ -1,0 +1,17 @@
+IF
+
+	Global("SUFinchIExists", "%er_CandlekeepPrologue%", 0)
+
+THEN
+	RESPONSE #100
+	SetGlobal("SUFinchIExists", "%er_CandlekeepPrologue%", 1)
+	CreateCreature("sufinchi", [1575.1945],8)
+END
+
+IF
+	GlobalGT("Chapter","GLOBAL",1)
+	Exists("sufinchi")
+THEN
+	RESPONSE #100
+		ActionOverride("sufinchi",DestroySelf())
+END

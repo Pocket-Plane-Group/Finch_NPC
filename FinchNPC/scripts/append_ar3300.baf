@@ -1,0 +1,35 @@
+IF
+
+	Global("SUFinchExists", "GLOBAL", 0)
+	!Global("SUFinchExists", "%er_RedSheafL1%", 1)
+	XPLT(Player1,1501)
+
+THEN
+	RESPONSE #100
+	SetGlobal("SUFinchExists", "GLOBAL", 1)
+	CreateCreature("sufinch1", [3000.2500],0)
+	ActionOverride("sufinch", MoveBetweenAreas("%er_RedSheafL1%",[515.405],0))
+END
+
+IF
+	Global("SUFinchExists", "GLOBAL", 0)
+	!Global("SUFinchExists", "%er_RedSheafL1%", 1)
+	XPGT(Player1,1500)
+        XPLT(Player1,10001)
+THEN
+	RESPONSE #100
+	SetGlobal("SUFinchExists", "GLOBAL", 1)
+	CreateCreature("sufinch2", [3000.2500],0)
+	ActionOverride("sufinch",MoveBetweenAreas("%er_RedSheafL1%",[515.405],0))
+END
+
+IF
+	Global("SUFinchExists", "GLOBAL", 0)
+        !Global("SUFinchExists", "%er_RedSheafL1%", 1)
+	XPGT(Player1,10000)
+THEN
+	RESPONSE #100
+	SetGlobal("SUFinchExists", "GLOBAL", 1)
+	CreateCreature("sufinch4", [3000.2500],0)
+	ActionOverride("sufinch",MoveBetweenAreas("%er_RedSheafL1%",[515.405],0))
+END

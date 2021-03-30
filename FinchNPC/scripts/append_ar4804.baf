@@ -1,0 +1,23 @@
+IF
+
+	Global("SUTraskExists", "%er_NashkelManorL1%", 0)
+
+THEN
+	RESPONSE #100
+	SetGlobal("SUTraskExists", "%er_NashkelManorL1%", 1)
+	CreateCreature("sutrask", [300.225],14)
+END
+
+IF
+        Global("SUFinchStartedLibrary", "GLOBAL",0)
+        Global("SUFinchQuestFailed", "GLOBAL",0)
+	OR(4)
+	Dead("Samantha")
+	Dead("sutrask")
+	Dead("nobl2")
+	Dead("nobw2")
+THEN
+	RESPONSE #100
+
+        SetGlobal("SUFinchQuestFailed", "GLOBAL",1)
+END

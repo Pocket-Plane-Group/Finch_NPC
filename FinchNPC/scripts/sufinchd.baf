@@ -1,0 +1,41 @@
+IF
+RealGlobalTimerExpired("X#DreamTalk","GLOBAL")
+InParty(Myself)
+InParty("Khalid")
+!Dead("Khalid")
+See("Khalid")
+Global("SuFinchKhalidGlassesWake","GLOBAL",0)
+THEN
+RESPONSE #100
+RealSetGlobalTimer("X#DreamTalk","GLOBAL",180)
+SetGlobal("SuFinchKhalidGlassesWake","GLOBAL",1)
+RestParty()
+END
+
+IF
+RealGlobalTimerExpired("X#DreamTalk","GLOBAL")
+InParty(Myself)
+InParty("Xzar")
+!Dead("Xzar")
+See("Xzar")
+Global("SuFinchXzarDreamWake","GLOBAL",0)
+THEN
+RESPONSE #100
+RealSetGlobalTimer("X#DreamTalk","GLOBAL",180)
+SetGlobal("SuFinchXzarDreamWake","GLOBAL",1)
+RestParty()
+END
+
+IF
+RealGlobalTimerExpired("X#DreamTalk","GLOBAL")
+InParty(Myself)
+InParty("%er_imoen%")
+!Dead("%er_imoen%")
+See("%er_imoen%")
+Global("SUFinchImoenPrank","GLOBAL",0)
+THEN
+RESPONSE #100
+RealSetGlobalTimer("X#DreamTalk","GLOBAL",180)
+SetGlobal("SUFinchImoenPrank","GLOBAL",1)
+Interact("%er_imoen%")
+END

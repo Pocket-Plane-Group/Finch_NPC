@@ -1,0 +1,12 @@
+IF
+	InParty("sufinch")
+	Global("er_FinchLeavesBGT","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ActionOverride("sufinch",LeaveParty())
+		ActionOverride("sufinch",ChangeAIScript("",DEFAULT))
+		ActionOverride("sufinch",ClearAllActions())
+		ActionOverride("sufinch",DestroySelf())
+		SetGlobal("er_FinchLeavesBGT","GLOBAL",1)
+		Continue()
+END

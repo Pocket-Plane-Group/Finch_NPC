@@ -1,0 +1,360 @@
+
+BACKUP ~finch/Backup~
+AUTHOR ~llamababe@pocketplane.net~
+
+LANGUAGE ~English~
+         ~English~
+         ~finch/English/sufinch.TRA~
+LANGUAGE ~Francais~
+         ~francais~
+         ~finch/French/sufinch.TRA~
+LANGUAGE ~Espanol~
+         ~espanol~
+         ~finch/Spanish/sufinch.TRA~
+
+BEGIN @14
+
+COPY ~finch/cre/sufinchi.cre~ ~override/sufinchi.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY INITIAL_MEETING @1  
+
+COPY ~finch/cre/sufinch1.cre~ ~override/sufinch1.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY MORALE @2 
+  SAY HAPPY @3 
+  SAY UNHAPPY_ANNOYED @4 
+  SAY UNHAPPY_SERIOUS @5 
+  SAY UNHAPPY_BREAKING @6 
+  SAY LEADER @7 
+  SAY TIRED @8 
+  SAY BORED @9 
+  SAY BATTLE_CRY1 @10 
+  SAY BATTLE_CRY2 @11 
+  SAY BATTLE_CRY3 @12 
+  SAY BATTLE_CRY4 @13 
+  SAY DAMAGE ~~ [SUFINC13] //"gasp" 
+  SAY DYING ~~ [SUFINC14] //Scream
+  SAY HURT @16 
+  SAY AREA_FOREST @17 
+  SAY AREA_CITY @18 
+  SAY AREA_DUNGEON @19 
+  SAY AREA_DAY @20 
+  SAY AREA_NIGHT @21 
+  SAY SELECT_COMMON1 @22 
+  SAY SELECT_COMMON2 @23 
+  SAY SELECT_COMMON3 @24 
+  SAY SELECT_COMMON4 @25 
+  SAY SELECT_COMMON5 @26 
+  SAY SELECT_COMMON6 @27 
+  SAY SELECT_ACTION1 @28 
+  SAY SELECT_ACTION2 @29 
+  SAY SELECT_ACTION3 @30 
+  SAY SELECT_ACTION4 @31 
+  SAY SELECT_ACTION5 @32 
+  SAY SELECT_ACTION6 @33 
+  SAY SELECT_ACTION7 @34 
+  SAY SELECT_RARE1 @35 
+  SAY SELECT_RARE2 @36 
+  SAY CRITICAL_HIT @37 
+  SAY CRITICAL_MISS @38 
+  SAY TARGET_IMMUNE @39 
+  SAY SPELL_DISRUPTED @40 
+  SAY INVENTORY_FULL @41 
+  SAY PICKED_POCKET @42 
+  SAY HIDDEN_IN_SHADOWS @43 
+  SAY SET_A_TRAP @44 
+  SAY BIO @45
+
+
+COPY ~finch/cre/sufinch2.cre~ ~override/sufinch2.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY MORALE @2 
+  SAY HAPPY @3 
+  SAY UNHAPPY_ANNOYED @4 
+  SAY UNHAPPY_SERIOUS @5 
+  SAY UNHAPPY_BREAKING @6 
+  SAY LEADER @7 
+  SAY TIRED @8 
+  SAY BORED @9 
+  SAY BATTLE_CRY1 @10 
+  SAY BATTLE_CRY2 @11 
+  SAY BATTLE_CRY3 @12 
+  SAY BATTLE_CRY4 @13 
+  SAY DAMAGE ~~ [SUFINC13] //"gasp" 
+  SAY DYING ~~ [SUFINC14] //Scream
+  SAY HURT @16 
+  SAY AREA_FOREST @17 
+  SAY AREA_CITY @18 
+  SAY AREA_DUNGEON @19 
+  SAY AREA_DAY @20 
+  SAY AREA_NIGHT @21 
+  SAY SELECT_COMMON1 @22 
+  SAY SELECT_COMMON2 @23 
+  SAY SELECT_COMMON3 @24 
+  SAY SELECT_COMMON4 @25 
+  SAY SELECT_COMMON5 @26 
+  SAY SELECT_COMMON6 @27 
+  SAY SELECT_ACTION1 @28 
+  SAY SELECT_ACTION2 @29 
+  SAY SELECT_ACTION3 @30 
+  SAY SELECT_ACTION4 @31 
+  SAY SELECT_ACTION5 @32 
+  SAY SELECT_ACTION6 @33 
+  SAY SELECT_ACTION7 @34 
+  SAY SELECT_RARE1 @35 
+  SAY SELECT_RARE2 @36 
+  SAY CRITICAL_HIT @37 
+  SAY CRITICAL_MISS @38 
+  SAY TARGET_IMMUNE @39 
+  SAY SPELL_DISRUPTED @40 
+  SAY INVENTORY_FULL @41 
+  SAY PICKED_POCKET @42 
+  SAY HIDDEN_IN_SHADOWS @43 
+  SAY SET_A_TRAP @44 
+  SAY BIO @45
+
+COPY ~finch/cre/sufinch4.cre~ ~override/sufinch4.cre~
+  SAY NAME1 @0
+  SAY NAME2 @0
+  SAY MORALE @2 
+  SAY HAPPY @3 
+  SAY UNHAPPY_ANNOYED @4 
+  SAY UNHAPPY_SERIOUS @5 
+  SAY UNHAPPY_BREAKING @6 
+  SAY LEADER @7 
+  SAY TIRED @8 
+  SAY BORED @9 
+  SAY BATTLE_CRY1 @10 
+  SAY BATTLE_CRY2 @11 
+  SAY BATTLE_CRY3 @12 
+  SAY BATTLE_CRY4 @13 
+  SAY DAMAGE ~~ [SUFINC13] //"gasp" 
+  SAY DYING ~~ [SUFINC14] //Scream
+  SAY HURT @16 
+  SAY AREA_FOREST @17 
+  SAY AREA_CITY @18 
+  SAY AREA_DUNGEON @19 
+  SAY AREA_DAY @20 
+  SAY AREA_NIGHT @21 
+  SAY SELECT_COMMON1 @22 
+  SAY SELECT_COMMON2 @23 
+  SAY SELECT_COMMON3 @24 
+  SAY SELECT_COMMON4 @25 
+  SAY SELECT_COMMON5 @26 
+  SAY SELECT_COMMON6 @27 
+  SAY SELECT_ACTION1 @28 
+  SAY SELECT_ACTION2 @29 
+  SAY SELECT_ACTION3 @30 
+  SAY SELECT_ACTION4 @31 
+  SAY SELECT_ACTION5 @32 
+  SAY SELECT_ACTION6 @33 
+  SAY SELECT_ACTION7 @34 
+  SAY SELECT_RARE1 @35 
+  SAY SELECT_RARE2 @36 
+  SAY CRITICAL_HIT @37 
+  SAY CRITICAL_MISS @38 
+  SAY TARGET_IMMUNE @39 
+  SAY SPELL_DISRUPTED @40 
+  SAY INVENTORY_FULL @41 
+  SAY PICKED_POCKET @42 
+  SAY HIDDEN_IN_SHADOWS @43 
+  SAY SET_A_TRAP @44 
+  SAY BIO @45
+
+COPY ~finch/cre/sutrask.cre~ ~override/sutrask.cre~
+  SAY NAME1 @46
+  SAY NAME2 @46
+
+ACTION_IF FILE_EXISTS_IN_GAME ~_bimoen.dlg~
+ THEN BEGIN
+END
+ELSE BEGIN
+  COMPILE ~finch/bimoen.d~
+END
+
+APPEND ~Interdia.2da~
+~Imoen        _bimoen~
+UNLESS ~Imoen~
+
+//Go out on a limb and try to assign some death variables
+
+COPY_EXISTING ~_NOBL2.cre~ ~override/_NOBL2.cre~
+  WRITE_ASCII 0x0280 ~NOBL2~
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~_NOBW2.cre~ ~override/_NOBW2.cre~
+  WRITE_ASCII 0x0280 ~NOBW2~
+BUT_ONLY_IF_IT_CHANGES
+
+COMPILE ~finch/d/sufinch.d~
+  USING ~finch/english/sufinch.tra~
+        ~finch/%s/sufinch.tra~
+
+COMPILE ~finch/d/sufinchi.d~
+  USING ~finch/english/sufinch.tra~
+        ~finch/%s/sufinch.tra~
+
+COMPILE ~finch/d/bsufinch.d~
+  USING ~finch/english/sufinch.tra~
+        ~finch/%s/sufinch.tra~
+
+COMPILE ~finch/d/sufinchj.d~
+  USING ~finch/english/sufinch.tra~
+        ~finch/%s/sufinch.tra~
+
+//Mur'Neth-Finch banter
+ACTION_IF FILE_EXISTS ~override/BA#MURN.DLG~ AND NOT FILE_EXISTS 
+~override/FINCHMURNETH.XXX~
+       THEN BEGIN
+       COPY_EXISTING ~SW1H01.ITM~ ~override/FINCHMURNETH.XXX~
+       COMPILE ~finch/d/xmodfinchmurneth.d~
+       USING ~finch/english/sufinch.tra~
+             ~finch/%s/sufinch.tra~
+END
+
+//Indira-Finch banter
+ACTION_IF FILE_EXISTS ~override/J#INDIB.DLG~ AND NOT FILE_EXISTS 
+~override/INDIRAFINCH.XXX~
+       THEN BEGIN
+       COPY_EXISTING ~SW1H01.ITM~ ~override/INDIRAFINCH.XXX~
+       COMPILE ~finch/d/xmodfinchindi.d~
+          USING ~finch/english/sufinch.tra~
+                ~finch/%s/sufinch.tra~
+END
+
+//TotSC interjections
+ACTION_IF FILE_EXISTS ~override/_ANDRIS.dlg~
+       THEN BEGIN
+       COMPILE ~finch/d/sufinch2.d~
+          USING ~finch/english/sufinch.tra~
+                ~finch/%s/sufinch.tra~
+END
+
+COPY ~finch/graphics~ ~override~
+COPY ~finch/audio~ ~override~
+COPY ~finch/items/sufbag1.sto~ ~override/sufbag1.sto~
+COPY ~finch/items/sufbag1.itm~ ~override/sufbag1.itm~
+  SAY NAME1 @48
+  SAY NAME2 @48
+  SAY DESC @49
+
+COPY ~finch/items/sufbook1.itm~ ~override/sufbook1.itm~
+  SAY NAME1 @50
+  SAY NAME2 @50
+  SAY DESC @51
+
+COPY ~finch/items/sufbook2.itm~ ~override/sufbook2.itm~
+  SAY NAME1 @52
+  SAY NAME2 @52
+  SAY DESC @53
+
+COPY ~finch/items/sufbook3.itm~ ~override/sufbook3.itm~
+  SAY NAME1 @54
+  SAY NAME2 @54
+  SAY DESC @55
+
+COPY ~finch/items/sufbook4.itm~ ~override/sufbook4.itm~
+  SAY NAME1 @56
+  SAY NAME2 @56
+  SAY DESC @57
+
+COPY ~finch/items/sufbook5.itm~ ~override/sufbook5.itm~
+  SAY NAME1 @58
+  SAY NAME2 @58
+  SAY DESC @59
+
+COPY ~finch/items/sufbookA.itm~ ~override/sufbookA.itm~
+  SAY NAME1 ~Transcribed Volumes~
+  SAY NAME2 ~Transcribed Volumes~
+  SAY DESC ~Transcribed Volumes
+  
+     Finch is carrying several copies of simply-bound works such as this that she transcribed during her recent visit to Candlekeep.~
+
+COPY ~finch/items/sufbookB.itm~ ~override/sufbookB.itm~
+  SAY NAME1 ~The Joy of Pudding~
+  SAY NAME2 ~The Joy of Pudding~
+  SAY DESC ~The Joy of Pudding
+
+     This well-thumbed volume is a cookbook comprising of various sweet and savory recipes such as:
+     
+     Turnip Whip
+     
+     Scald and stir in a saucepan (may substitute bucket if saucepans not in season) over low heat (may substitute Burning Hands if heat not in season):
+     
+     2 cups wyvern's milk (cow's milk may be substituted if the local wyverns are cranky)
+     1/4 cup sugar
+     1/2 cup mashed turnips
+     
+     Pour part of these ingredients over:
+     
+     1 beaten wyvern's egg yolk (if local wyverns still cranky, may substitute 4 yolks of the chicken variety)
+     
+     Return the sauce to the pan. Stir custard constantly over low heat until it thickens slightly or angry wyverns show up for supper. (Do not offer them a portion.) Strain custard if desired. (Picky, picky.) Cool by placing pan in cool water. (If water not in season, the author humbly suggests that the cook has bigger problems than making the perfect pudding and should stop mucking around with turnips and wyverns.) In a separate bowl, whip until stiff:
+     
+     3/4 cup whipping cream
+     
+     Add:
+     
+     1 teaspoon vanilla
+     
+     Fold the cold turnip custard into the whipped cream mixture. Chill thoroughly before serving. Serves 6.~
+
+
+
+//COPY ~finch/items/sufglass.spl~ ~override/sufglass.spl~
+//COPY ~finch/items/sufglass.eff~ ~override/sufglass.eff~
+//COPY ~finch/items/sufglas2.eff~ ~override/sufglas2.eff~
+//COPY ~finch/items/sufglass.itm~ ~override/sufglass.itm~
+//  SAY NAME1 @60
+//SAY NAME2 @60
+//  SAY DESC @61
+
+// Shameless editing of Glasses of Identification
+
+COPY_EXISTING ~misc3p.itm~ ~override/misc3p.itm~
+  SAY NAME1 @60
+  SAY NAME2 @60
+  SAY UNIDENTIFIED_DESC @61
+  SAY DESC @61
+
+
+//COPY_EXISTING ~FW3357.are~ ~override/FW3357.are~
+//  WRITE_ASCII 0x94 ~_AR3357~
+//BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~FW4002.are~ ~override/FW4002.are~
+  WRITE_ASCII 0x94 ~_AR4002~
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~FW4804.are~ ~override/FW4804.are~
+  WRITE_ASCII 0x94 ~_AR4804~
+BUT_ONLY_IF_IT_CHANGES
+
+EXTEND_BOTTOM ~_AR4900.bcs~ ~finch/scripts/append_ar4900.baf~
+EXTEND_TOP ~_AR1803.bcs~ ~finch/scripts/append_ar1803.baf~
+EXTEND_TOP ~_AR1900.bcs~ ~finch/scripts/append_ar1900.baf~
+EXTEND_BOTTOM ~_AR3300.bcs~ ~finch/scripts/append_ar3300.baf~
+EXTEND_BOTTOM ~_AR2400.bcs~ ~finch/scripts/append_ar2400.baf~
+EXTEND_BOTTOM ~_AR2600.bcs~ ~finch/scripts/append_ar2600.baf~
+EXTEND_TOP ~_AR4002.bcs~ ~finch/scripts/append_ar4002.baf~
+EXTEND_TOP ~_AR4804.bcs~ ~finch/scripts/append_ar4804.baf~
+EXTEND_TOP ~J#INDI.bcs~ ~finch/scripts/append_j#indi.baf~
+COMPILE ~finch/scripts/sufinch.baf~
+COMPILE ~finch/scripts/sufinchd.baf~
+
+APPEND ~PDialog.2da~
+~SUFINCH          SUFINCHP          SUFINCHJ          SUFINCHD  ~
+UNLESS ~SUFINCH~
+APPEND ~Interdia.2da~
+~SUFINCH       BSUFINCH~
+UNLESS ~SUFINCH~
+
+COPY ~finch/finchaudioinstall.bat~ ~finchaudioinstall.bat~
+
+AT_INTERACTIVE_EXIT ~VIEW finch/FinchReadMe.html~
+AT_INTERACTIVE_EXIT ~finchaudioinstall.bat~
+AT_INTERACTIVE_UNINSTALL ~finch/finchaudiouninstall.bat~
+

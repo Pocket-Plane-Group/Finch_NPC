@@ -1,0 +1,35 @@
+IF
+InParty(Myself)
+InParty("Khalid")
+!Dead("Khalid")
+See("Khalid")
+Global("SuFinchKhalidGlassesWake","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("SuFinchKhalidGlassesWake","GLOBAL",1)
+RestParty()
+END
+
+IF
+InParty(Myself)
+InParty("Xzar")
+!Dead("Xzar")
+See("Xzar")
+Global("SuFinchXzarDreamWake","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("SuFinchXzarDreamWake","GLOBAL",1)
+RestParty()
+END
+
+IF
+InParty(Myself)
+InParty("Imoen")
+!Dead("Imoen")
+See("Imoen")
+Global("SUFinchImoenPrank","GLOBAL",0)
+THEN
+RESPONSE #100
+SetGlobal("SUFinchImoenPrank","GLOBAL",1)
+Interact("Imoen")
+END

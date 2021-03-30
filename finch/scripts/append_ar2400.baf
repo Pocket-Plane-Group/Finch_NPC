@@ -1,0 +1,49 @@
+IF
+	Global("SUFinchQBookB","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SUFinchQBookB","GLOBAL",1)
+		ActionOverride("Container3",CreateItem("sufbookB",1,0,0)) 
+END
+
+IF
+Global("SUFinchSetLibraryTimer","GLOBAL", 0)
+PartyHasItem("SUFBOOK1")
+PartyHasItem("SUFBOOK2")
+PartyHasItem("SUFBOOK3")
+PartyHasItem("SUFBOOK4")
+PartyHasItem("SUFBOOKA")
+PartyHasItem("SUFBOOKB")
+THEN
+	RESPONSE #100
+RealSetGlobalTimer("SuFinchLibraryTimer", "GLOBAL", 30)
+SetGlobal("SUFinchSetLibraryTimer","GLOBAL", 1)
+END
+
+IF
+Global("SUFinchLibraryItem", "GLOBAL", 0)
+RealGlobalTimerExpired("SuFinchLibraryTimer", "GLOBAL")
+Global("SUFinchQuestFailed", "GLOBAL",0)
+PartyHasItem("SUFBOOK1")
+PartyHasItem("SUFBOOK2")
+PartyHasItem("SUFBOOK3")
+PartyHasItem("SUFBOOK4")
+PartyHasItem("SUFBOOKA")
+PartyHasItem("SUFBOOKB")
+THEN
+	RESPONSE #100
+SetGlobal("SUFinchLibraryItem", "GLOBAL", 1)
+TakePartyItem("SUFBOOK1")
+DestroyItem("SUFBOOK1")
+TakePartyItem("SUFBOOK2")
+DestroyItem("SUFBOOK2")
+TakePartyItem("SUFBOOK3")
+DestroyItem("SUFBOOK3")
+TakePartyItem("SUFBOOK4")
+DestroyItem("SUFBOOK4")
+TakePartyItem("SUFBOOKA")
+DestroyItem("SUFBOOKA")
+TakePartyItem("SUFBOOKB")
+DestroyItem("SUFBOOKB")
+GiveItemCreate("SUFBOOK5", "sufinch", 1, 0, 0)
+END

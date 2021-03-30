@@ -1,0 +1,15 @@
+IF
+  OR(2)
+    InParty("sufinch")
+    InPartyAllowDead("sufinch")
+  GlobalLT("BD_PLOT","GLOBAL",51)
+THEN
+  RESPONSE #100
+    ActionOverride("sufinch",LeaveParty())
+		ActionOverride("sufinch",ChangeAIScript("",DEFAULT))
+		ActionOverride("sufinch",ClearAllActions())
+	ActionOverride("PlayerChest00",TakeCreatureItems("sufinch",BACKPACK))
+    SmallWait(1)
+    ActionOverride("sufinch",DestroySelf())
+    Continue()
+END

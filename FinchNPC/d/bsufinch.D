@@ -1,10 +1,52 @@
 BEGIN BSUFINCH
 
+// Before rest. The foreshadowed Imoen prank.
+//triggered via script
+CHAIN
+IF WEIGHT #0 ~Global("SUFinchImoenPrank","GLOBAL",1)~ THEN BSUFINCH SuFinchBoobytrap
+@212 DO ~SetGlobal("SUFinchImoenPrank","GLOBAL",2)~
+== %er_bimoen% @213                        
+== BSUFINCH @214
+== %er_bimoen% @215
+== BSUFINCH @216
+== %er_bimoen% @217
+== BSUFINCH @218
+== %er_bimoen% @219
+== BSUFINCH @220
+== %er_bimoen% @221
+== BSUFINCH @222
+== %er_bimoen% @223
+== BSUFINCH @224 DO ~RestParty()~
+EXIT
+
+// Banter where Xzar describes a nightmare, but he actually thinks it is a fabulous dream. After rest.
+//triggered via script
+CHAIN
+IF WEIGHT #1 ~Global("SuFinchXzarDreamWake","GLOBAL",1)~ THEN BSUFINCH SuFinchWhatANightmare
+@311 DO ~SetGlobal("SuFinchXzarDreamWake","GLOBAL",2)~
+== %er_tutu%BXZAR @312
+== BSUFINCH @313
+== %er_tutu%BXZAR @314
+EXIT
+
+//Khalid banter After rest
+//triggered via script
+CHAIN
+IF WEIGHT #2 ~Global("SuFinchKhalidGlassesWake","GLOBAL",1)~ THEN BSUFINCH SuFinchGlassesForeshadow
+@411 DO ~SetGlobal("SuFinchKhalidGlassesWake","GLOBAL",2)~
+== %er_tutu%BKHALI @412
+== BSUFINCH @413
+== %er_tutu%BKHALI @414
+EXIT
+
 // Banter about Labor, hard work and usefulness
 CHAIN
-IF WEIGHT #4 ~ CombatCounter(0) InParty("sufinch")
+IF WEIGHT #4 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchYeslick1","LOCALS",0)~ THEN %er_tutu%BYESLI SuHardWorker
 @175 DO ~SetGlobal("SUFinchYeslick1","LOCALS",1)~
 == BSUFINCH @176
@@ -19,9 +61,12 @@ EXIT
 
 // Banter with Branwen about sturdiness.
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchBranwen1","LOCALS",0)~ THEN %er_tutu%BBRANW SuSturdyForSize
 @183 DO ~SetGlobal("SUFinchBranwen1","LOCALS",1)~
 == BSUFINCH @184
@@ -30,9 +75,12 @@ Global("SUFinchBranwen1","LOCALS",0)~ THEN %er_tutu%BBRANW SuSturdyForSize
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("GARRICK")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("GARRICK")
 See("GARRICK")
 !StateCheck("GARRICK",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchGarrick1","LOCALS",0)~ THEN BSUFINCH SuFinchBardTroupe
 @187 DO ~SetGlobal("SUFinchGarrick1","LOCALS",1)~
 == %er_tutu%BGARRI @188
@@ -51,11 +99,13 @@ EXIT
 //Banter with Faldorn about "If you were a tree, what kind of tree would you be...?"
 
 CHAIN
-IF ~ CombatCounter(0)
+IF ~CombatCounter(0) !See([ENEMY])
 AreaType(FOREST)
 InParty("FALDORN")
 See("FALDORN")
 !StateCheck("FALDORN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchFaldorn2","LOCALS",0)~ THEN BSUFINCH SuIfIWereATreeIdBeAShoeTree
 @197  DO ~SetGlobal("SUFinchFaldorn2","LOCALS",1)~
 == %er_tutu%BFALDO @198
@@ -69,9 +119,12 @@ EXIT
 // Banter where Eldoth is rude. Like, duh. Probably should do this one on rest. Or not.
 
 CHAIN
-IF ~CombatCounter(0) InParty("ELDOTH")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("ELDOTH")
 See("ELDOTH")
 !StateCheck("ELDOTH",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchEldoth1","LOCALS",0)~ THEN BSUFINCH SuFinchWorthAcknowledging
 @203 DO ~SetGlobal("SUFinchEldoth1","LOCALS",1)~
 == %er_tutu%BELDOT @204
@@ -85,52 +138,36 @@ Global("SUFinchEldoth1","LOCALS",0)~ THEN BSUFINCH SuFinchWorthAcknowledging
 == %er_tutu%BELDOT @211
 EXIT
 
-// Before rest. The foreshadowed Imoen prank.
-
 CHAIN
-IF WEIGHT #0 ~CombatCounter(0) InParty("%er_imoen%")
-See("%er_imoen%")
-!StateCheck("%er_imoen%",CD_STATE_NOTVALID)
-Global("SUFinchImoenPrank","GLOBAL",1)~ THEN BSUFINCH SuFinchBoobytrap
-@212 DO ~SetGlobal("SUFinchImoenPrank","GLOBAL",2)~
-== %er_bimoen% @213                        
-== BSUFINCH @214
-== %er_bimoen% @215
-== BSUFINCH @216
-== %er_bimoen% @217
-== BSUFINCH @218
-== %er_bimoen% @219
-== BSUFINCH @220
-== %er_bimoen% @221
-== BSUFINCH @222
-== %er_bimoen% @223
-== BSUFINCH @224 DO ~RestParty()~
-EXIT
-
-CHAIN
-IF WEIGHT #10 ~InParty("SUFINCH")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
-Global("SUFinchJaheira2","GLOBAL",0)~ THEN %er_tutu%BJAHEI SuFinchLaughter
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
+Global("SUFinchJaheira2","GLOBAL",0)~ THEN %er_bjahei% SuFinchLaughter
 @225 DO ~SetGlobal("SUFinchJaheira2","GLOBAL",1)~   
 =
 @226
 == BSUFINCH @227
-== %er_tutu%BJAHEI @228
+== %er_bjahei% @228
 =
 @229
 == BSUFINCH @230
-== %er_tutu%BJAHEI @231
+== %er_bjahei% @231
 == BSUFINCH @232
-== %er_tutu%BJAHEI @233
+== %er_bjahei% @233
 EXIT
 
 // Banter with Ajantis about courage.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAjantis1","LOCALS",0)
 Global("SUFinchYeslick2","GLOBAL",0)~ THEN %er_tutu%BAJANT SuFinchCourageLecture
 @234 DO ~SetGlobal("SUFinchAjantis1","LOCALS",1)~
@@ -140,9 +177,12 @@ Global("SUFinchYeslick2","GLOBAL",0)~ THEN %er_tutu%BAJANT SuFinchCourageLecture
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("Khalid")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("Khalid")
 See("Khalid")
 !StateCheck("Khalid",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 !Dead("Jaheira")
 Global("SUFinchKhalid1","LOCALS",0)~ THEN BSUFINCH SuFinchMarriedFolks
 @238 DO ~SetGlobal("SUFinchKhalid1","LOCALS",1)~
@@ -158,9 +198,12 @@ Global("SUFinchKhalid1","LOCALS",0)~ THEN BSUFINCH SuFinchMarriedFolks
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchCoran1","LOCALS",0)~ THEN %er_tutu%BCORAN SuFinchBlushing
 @248 DO ~SetGlobal("SUFinchCoran1","LOCALS",1)~
 == BSUFINCH @249
@@ -172,9 +215,12 @@ Global("SUFinchCoran1","LOCALS",0)~ THEN %er_tutu%BCORAN SuFinchBlushing
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~ CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchGarrick2","LOCALS",0)~ THEN %er_tutu%BGARRI SuFinchGarrickScoresHarHar
 @255 DO ~SetGlobal("SUFinchGarrick2","LOCALS",1)~
 == BSUFINCH @256
@@ -185,13 +231,16 @@ Global("SUFinchGarrick2","LOCALS",0)~ THEN %er_tutu%BGARRI SuFinchGarrickScoresH
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~InParty("SUFINCH")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
-Global("SUFinchEdwin1","LOCALS",0)~ THEN %er_tutu%BEDWIN SuFinchMule
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
+Global("SUFinchEdwin1","LOCALS",0)~ THEN %er_tutu%BEDWIN%eet_var% SuFinchMule
 @261 DO ~SetGlobal("SUFinchEdwin1","LOCALS",1)~                      
 == BSUFINCH @262
-== %er_tutu%BEDWIN @263
+== %er_tutu%BEDWIN%eet_var% @263
 =
 @264
 == BSUFINCH @265
@@ -200,9 +249,12 @@ EXIT
 // Banter where Safana goads about Finch must have some deep dark secrets. No one could be that much of a bore. No banter could be this boring, either.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchSafana1","LOCALS",0)~ THEN %er_tutu%BSAFAN SuFinchDullDull
 @266 DO ~SetGlobal("SUFinchSafana1","LOCALS",1)~
 == BSUFINCH @267
@@ -216,9 +268,12 @@ EXIT
 //Banter with Alora. Making funny faces because it's fun and fun is happy!!!!
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAlora1","LOCALS",0)~ THEN %er_tutu%BALORA SuFinchWrinkleNose
 @273 DO ~SetGlobal("SUFinchAlora1","LOCALS",1)~
 == BSUFINCH @274
@@ -233,9 +288,12 @@ EXIT
 //Banter with Yeslick about small folk facing large monsters in battle
 
 CHAIN
-IF ~ CombatCounter(0) InParty("Yeslick")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("Yeslick")
 See("Yeslick")
 !StateCheck("Yeslick",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchYeslick2","GLOBAL",0)~ THEN BSUFINCH SuSmallFolkBigBattles
 @280 DO ~SetGlobal("SUFinchYeslick2","GLOBAL",1)~
 == %er_tutu%BYESLI @281
@@ -255,25 +313,30 @@ EXIT
 
 // Banter with Dynaheir about refined deportment
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
-Global("SUFinchDynaheir1","LOCALS",0)~ THEN %er_tutu%BDYNAH SuFinchQuillNibbling
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
+Global("SUFinchDynaheir1","LOCALS",0)~ THEN %er_bdynah% SuFinchQuillNibbling
 @293 DO ~SetGlobal("SUFinchDynaheir1","LOCALS",1)~
 == BSUFINCH @294
-== %er_tutu%BDYNAH @295
-== %er_tutu%BMINSC IF ~InParty("Minsc")~ @297
-== %er_tutu%BDYNAH @298
+== %er_bdynah% @295
+== %er_tutu%BMINSC%eet_var% IF ~InParty("Minsc")~ @297
+== %er_bdynah% @298
 == BSUFINCH @299
-== %er_tutu%BDYNAH  @300
+== %er_bdynah%  @300
 EXIT
 
 // Banter with Xan about being trapped in the mines.
 CHAIN
-IF ~ CombatCounter(0)
+IF ~CombatCounter(0) !See([ENEMY])
 InParty("Xan")
 See("Xan")
 !StateCheck("Xan",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchXan1","LOCALS",0)~ THEN BSUFINCH SuFunchWereTheMinesScaryXan
 @301 DO ~SetGlobal("SUFinchXan1","LOCALS",1)~
 == %er_tutu%BXANNN @302
@@ -283,37 +346,31 @@ Global("SUFinchXan1","LOCALS",0)~ THEN BSUFINCH SuFunchWereTheMinesScaryXan
 EXIT 
 
 CHAIN
-IF ~InParty("MINSC")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("MINSC")
 See("MINSC")
 !StateCheck("MINSC",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 !Dead("Dynaheir")
 GlobalGT("HelpMinsc","GLOBAL",1)
 Global("SUFinchMinsc1","LOCALS",0)~ THEN BSUFINCH SuFinchGnolls
 @306 DO ~SetGlobal("SUFinchMinsc1","LOCALS",1)~
-== %er_tutu%BMINSC @307   
+== %er_tutu%BMINSC%eet_var% @307   
 =
 @308
 == BSUFINCH @309
-== %er_tutu%BMINSC @310
+== %er_tutu%BMINSC%eet_var% @310
 EXIT
 
-// Banter where Xzar describes a nightmare, but he actually thinks it is a fabulous dream. After rest.
 
 CHAIN
-IF WEIGHT #1 ~CombatCounter(0) InParty("XZAR")
-See("XZAR")
-!StateCheck("XZAR",CD_STATE_NOTVALID)
-Global("SuFinchXzarDreamWake","GLOBAL",1)~ THEN BSUFINCH SuFinchWhatANightmare
-@311 DO ~SetGlobal("SuFinchXzarDreamWake","GLOBAL",2)~
-== %er_tutu%BXZAR @312
-== BSUFINCH @313
-== %er_tutu%BXZAR @314
-EXIT
-
-CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchKagain1","LOCALS",0)~ THEN %er_tutu%BKAGAI SuFinchSellItOnEBay
 @315 DO ~SetGlobal("SUFinchKagain1","LOCALS",1)~
 == BSUFINCH @316
@@ -325,9 +382,12 @@ EXIT
 // One Sharteel banter. Asks if she knows how to read?
 
 CHAIN
-IF ~CombatCounter(0) InParty("SHARTEEL")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("SHARTEEL")
 See("SHARTEEL")
 !StateCheck("SHARTEEL",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchSharteel1","LOCALS",0)~ THEN BSUFINCH SuFinchReadingIsFundamental
 @320
 DO ~SetGlobal("SUFinchSharteel1","LOCALS",1)~
@@ -343,9 +403,12 @@ EXIT
 //Banter with Eldoth, some sleazy deal.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchEldoth2","LOCALS",0)~ THEN %er_tutu%BELDOT SuFinchCopyGoon
 @326 DO ~SetGlobal("SUFinchEldoth2","LOCALS",1)~
 =
@@ -362,23 +425,29 @@ Global("SUFinchEldoth2","LOCALS",0)~ THEN %er_tutu%BELDOT SuFinchCopyGoon
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("DYNAHEIR")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("DYNAHEIR")
 See("DYNAHEIR")
 !StateCheck("DYNAHEIR",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchDynaheir2","LOCALS",0)~ THEN BSUFINCH SuFinchScaryGnolls
 @336
 DO ~SetGlobal("SUFinchDynaheir2","LOCALS",1)~
-== %er_tutu%BDYNAH @337
+== %er_bdynah% @337
 == BSUFINCH @338
-== %er_tutu%BDYNAH @339
+== %er_bdynah% @339
 == BSUFINCH @340
-== %er_tutu%BDYNAH @341
+== %er_bdynah% @341
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 TimeOfDay(NIGHT)
 Global("SUFinchSkie1","LOCALS",0)~ THEN %er_tutu%BSKIE SuFinchInfrared
 @342 DO ~SetGlobal("SUFinchSkie1","LOCALS",1)~
@@ -395,10 +464,13 @@ Global("SUFinchSkie1","LOCALS",0)~ THEN %er_tutu%BSKIE SuFinchInfrared
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("BRANWEN")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("BRANWEN")
 See("BRANWEN")
 !Dead("Tranzig")
 !StateCheck("BRANWEN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchBranwen2","LOCALS",0)~ THEN BSUFINCH SuFinchStoned
 @350 DO ~SetGlobal("SUFinchBranwen2","LOCALS",1)~
 == %er_tutu%BBRANW @351
@@ -412,9 +484,12 @@ Global("SUFinchBranwen2","LOCALS",0)~ THEN BSUFINCH SuFinchStoned
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchXzar1","LOCALS",0)~ THEN %er_tutu%BXZAR SuFinchParanoia
 @357 DO ~SetGlobal("SUFinchXzar1","LOCALS",1)~
 == BSUFINCH @358
@@ -426,9 +501,12 @@ Global("SUFinchXzar1","LOCALS",0)~ THEN %er_tutu%BXZAR SuFinchParanoia
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchSkie2","LOCALS",0)~ THEN %er_tutu%BSKIE SuFinchInfrared
 @363 DO ~SetGlobal("SUFinchSkie2","LOCALS",1)~
 =
@@ -442,9 +520,12 @@ Global("SUFinchSkie2","LOCALS",0)~ THEN %er_tutu%BSKIE SuFinchInfrared
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchTiax1","LOCALS",0)~ THEN %er_tutu%BTIAX SuFinchTakeAMemo
 @370
 DO ~SetGlobal("SUFinchTiax1","LOCALS",1)~
@@ -456,15 +537,18 @@ DO ~SetGlobal("SUFinchTiax1","LOCALS",1)~
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~InParty("SUFINCH")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
-Global("SUFinchMinsc2","LOCALS",0)~ THEN %er_tutu%BMINSC SuFinchNestingInstinct
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
+Global("SUFinchMinsc2","LOCALS",0)~ THEN %er_tutu%BMINSC%eet_var% SuFinchNestingInstinct
 @375 DO ~SetGlobal("SUFinchMinsc2","LOCALS",1)~                      
 == BSUFINCH @376
 =
 @377
-== %er_tutu%BMINSC @378
+== %er_tutu%BMINSC%eet_var% @378
 =
 @379
 == BSUFINCH @380
@@ -473,9 +557,12 @@ EXIT
 // Banter w/ Safana about pirates? About talking to men?
 
 CHAIN
-IF ~CombatCounter(0) InParty("SAFANA")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("SAFANA")
 See("SAFANA")
 !StateCheck("SAFANA",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchSafana2","LOCALS",0)~ THEN BSUFINCH SuFinchSea
 @381 DO ~SetGlobal("SUFinchSafana2","LOCALS",1)~
 =
@@ -490,26 +577,32 @@ Global("SUFinchSafana2","LOCALS",0)~ THEN BSUFINCH SuFinchSea
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~InParty("SUFINCH")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
-Global("SUFinchViconia1","LOCALS",0)~ THEN %er_tutu%BVICON SuFinchUnderdark
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
+Global("SUFinchViconia1","LOCALS",0)~ THEN %er_bvicon% SuFinchUnderdark
 @389 DO ~SetGlobal("SUFinchViconia1","LOCALS",1)~                      
 == BSUFINCH @390
-== %er_tutu%BVICON @391
+== %er_bvicon% @391
 =
 @392
 == BSUFINCH @393
-== %er_tutu%BVICON @394
+== %er_bvicon% @394
 EXIT
 
 // Quayle banter - she's annoyed at gnomish qwirkiness. Feels left out, for being a quiet, content sort. Battle of the glasses. Deneirrath are just smarty wanna-bes, but at least they don't have to shout how brilliant they are all the time. You're lucky to be a gnome, my dear.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 AreaType(FOREST)
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchQuayle1","LOCALS",0)~ THEN %er_tutu%BQUAYL SuFinchDeneir
 @395 DO ~SetGlobal("SUFinchQuayle1","LOCALS",1)~
 == BSUFINCH @396
@@ -523,9 +616,12 @@ Global("SUFinchQuayle1","LOCALS",0)~ THEN %er_tutu%BQUAYL SuFinchDeneir
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchCoran2","LOCALS",0)~ THEN %er_tutu%BCORAN SuFinchFlirting
 @402 DO ~SetGlobal("SUFinchCoran2","LOCALS",1)~
 == BSUFINCH @403
@@ -538,22 +634,13 @@ Global("SUFinchCoran2","LOCALS",0)~ THEN %er_tutu%BCORAN SuFinchFlirting
 == %er_tutu%BCORAN @410
 EXIT
 
-//After rest
 CHAIN
-IF WEIGHT #2 ~CombatCounter(0) InParty("Khalid")
-See("Khalid")
-!StateCheck("Khalid",CD_STATE_NOTVALID)
-Global("SuFinchKhalidGlassesWake","GLOBAL",1)~ THEN BSUFINCH SuFinchGlassesForeshadow
-@411 DO ~SetGlobal("SuFinchKhalidGlassesWake","GLOBAL",2)~
-== %er_tutu%BKHALI @412
-== BSUFINCH @413
-== %er_tutu%BKHALI @414
-EXIT
-
-CHAIN
-IF WEIGHT #10 ~ CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchGarrick3","LOCALS",0)~ THEN %er_tutu%BGARRI SuFinchGarrickIsABook
 @415 DO ~SetGlobal("SUFinchGarrick3","LOCALS",1)~
 == BSUFINCH @416
@@ -576,9 +663,12 @@ Global("SUFinchGarrick3","LOCALS",0)~ THEN %er_tutu%BGARRI SuFinchGarrickIsABook
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAlora2","LOCALS",0)~ THEN %er_tutu%BALORA SuFinchYourFace
 @444 DO ~SetGlobal("SUFinchAlora2","LOCALS",1)~
 == BSUFINCH @445
@@ -592,9 +682,12 @@ EXIT
 // One Montaron Banter. Bet she's a wild one with a few drinks.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchMonty2","LOCALS",0)~ THEN %er_tutu%BMONTA SuFinchSororityGirl
 @451 DO ~SetGlobal("SUFinchMonty2","LOCALS",1)~
 == BSUFINCH @452
@@ -607,36 +700,45 @@ Global("SUFinchMonty2","LOCALS",0)~ THEN %er_tutu%BMONTA SuFinchSororityGirl
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~InParty("SUFINCH")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
-Global("SUFinchMinsc3","LOCALS",0)~ THEN %er_tutu%BMINSC SuFinchLittleThang
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
+Global("SUFinchMinsc3","LOCALS",0)~ THEN %er_tutu%BMINSC%eet_var% SuFinchLittleThang
 @458 DO ~SetGlobal("SUFinchMinsc3","LOCALS",1)~                      
 == BSUFINCH @459
-== %er_tutu%BMINSC @460
+== %er_tutu%BMINSC%eet_var% @460
 =
 @461
 == BSUFINCH @462
-== %er_tutu%BMINSC @463
+== %er_tutu%BMINSC%eet_var% @463
 == BSUFINCH @464
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~InParty("SUFINCH")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 TimeOfDay(NIGHT)
-Global("SUFinchViconia2","LOCALS",0)~ THEN %er_tutu%BVICON SuFinchNight
+Global("SUFinchViconia2","LOCALS",0)~ THEN %er_bvicon% SuFinchNight
 @465 DO ~SetGlobal("SUFinchViconia2","LOCALS",1)~                      
 == BSUFINCH @466
-== %er_tutu%BVICON @467
+== %er_bvicon% @467
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 AreaType(FOREST)
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchQuayle2","LOCALS",0)~ THEN %er_tutu%BQUAYL SuFinchOfCourseWeMustHaveANoseBanter
 @468 DO ~SetGlobal("SUFinchQuayle2","LOCALS",1)~
 =
@@ -653,9 +755,12 @@ Global("SUFinchQuayle2","LOCALS",0)~ THEN %er_tutu%BQUAYL SuFinchOfCourseWeMustH
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("TIAX")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("TIAX")
 See("TIAX")
 !StateCheck("TIAX",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchTiax2","LOCALS",0)~ THEN BSUFINCH SuFinchYouRule
 @476 DO ~SetGlobal("SUFinchTiax2","LOCALS",1)~
 == %er_tutu%BTIAX @477
@@ -670,9 +775,12 @@ Global("SUFinchTiax2","LOCALS",0)~ THEN BSUFINCH SuFinchYouRule
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchEldoth3","LOCALS",0)~ THEN %er_tutu%BELDOT SuFinchNotorious
 @485 DO ~SetGlobal("SUFinchEldoth3","LOCALS",1)~
 == BSUFINCH @486
@@ -688,9 +796,12 @@ Global("SUFinchEldoth3","LOCALS",0)~ THEN %er_tutu%BELDOT SuFinchNotorious
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 AreaType(FOREST)
 Global("SUFinchKhalid3","LOCALS",0)~ THEN %er_tutu%BKHALI SuFinchMud
 @494 DO ~SetGlobal("SUFinchKhalid3","LOCALS",1)~
@@ -700,9 +811,12 @@ Global("SUFinchKhalid3","LOCALS",0)~ THEN %er_tutu%BKHALI SuFinchMud
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("MONTARON")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("MONTARON")
 See("MONTARON")
 !StateCheck("MONTARON",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 AreaType(DUNGEON)
 Global("SUFinchMonty1","LOCALS",0)~ THEN BSUFINCH SuFinchQuitBellowing
 @498 DO ~SetGlobal("SUFinchMonty1","LOCALS",1)~
@@ -711,10 +825,13 @@ Global("SUFinchMonty1","LOCALS",0)~ THEN BSUFINCH SuFinchQuitBellowing
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 AreaType(FOREST)
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchQuayle3","LOCALS",0)~ THEN %er_tutu%BQUAYL SuFinchTheoreticallyDeepStuff
 @501 DO ~SetGlobal("SUFinchQuayle3","LOCALS",1)~
 == BSUFINCH @502
@@ -736,32 +853,38 @@ Global("SUFinchQuayle3","LOCALS",0)~ THEN %er_tutu%BQUAYL SuFinchTheoreticallyDe
 EXIT
 
 CHAIN
-IF ~InParty("JAHEIRA")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("JAHEIRA")
 See("JAHEIRA")
 !StateCheck("JAHEIRA",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 AreaType(FOREST)
 Global("SUFinchJaheira3","LOCALS",0)~ THEN BSUFINCH SuFinchNeverSeenATree
 @514 DO ~SetGlobal("SUFinchJaheira3","LOCALS",1)~
-== %er_tutu%BJAHEI @515
+== %er_bjahei% @515
 == BSUFINCH @516
-== %er_tutu%BJAHEI @517
+== %er_bjahei% @517
 == BSUFINCH @518
-== %er_tutu%BJAHEI @519
+== %er_bjahei% @519
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("DYNAHEIR")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("DYNAHEIR")
 See("DYNAHEIR")
 !StateCheck("DYNAHEIR",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 InParty("Minsc")
 Global("SUFinchDynaheir3","LOCALS",0)~ THEN BSUFINCH SuFinchMinscIsSwell
 @520
 DO ~SetGlobal("SUFinchDynaheir3","LOCALS",1)~
-== %er_tutu%BDYNAH @521
+== %er_bdynah% @521
 == BSUFINCH @522
-== %er_tutu%BDYNAH @523
+== %er_bdynah% @523
 == BSUFINCH @524
-== %er_tutu%BDYNAH @525
+== %er_bdynah% @525
 == BSUFINCH @526
 EXIT
 
@@ -769,10 +892,12 @@ EXIT
 // Faldorn could reply with stuff like "Some things are left to fend for themselves" "Wolves will foster a cub")
 
 CHAIN
-IF ~ CombatCounter(0)
+IF ~CombatCounter(0) !See([ENEMY])
 InParty("FALDORN")
 See("FALDORN")
 !StateCheck("FALDORN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchFaldorn3","LOCALS",0)~ THEN BSUFINCH SuOrphanFaldorns
 @527  DO ~SetGlobal("SUFinchFaldorn3","LOCALS",1)~
 == %er_tutu%BFALDO @528
@@ -781,9 +906,12 @@ Global("SUFinchFaldorn3","LOCALS",0)~ THEN BSUFINCH SuOrphanFaldorns
 EXIT 
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchKagain2","GLOBAL",0)~ THEN %er_tutu%BKAGAI SuFinchAskNicely
 @531 DO ~SetGlobal("SUFinchKagain2","GLOBAL",1)~
 == BSUFINCH @532
@@ -793,23 +921,29 @@ Global("SUFinchKagain2","GLOBAL",0)~ THEN %er_tutu%BKAGAI SuFinchAskNicely
 EXIT
 
 CHAIN
-IF ~InParty("EDWIN")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("EDWIN")
 See("EDWIN")
 !StateCheck("EDWIN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchEdwin2","LOCALS",0)~ THEN BSUFINCH SuFinchNashkel
 @535 DO ~SetGlobal("SUFinchEdwin2","LOCALS",1)~
-== %er_tutu%BEDWIN @536                        
+== %er_tutu%BEDWIN%eet_var% @536                        
 == BSUFINCH @537
-== %er_tutu%BEDWIN @538
+== %er_tutu%BEDWIN%eet_var% @538
 == BSUFINCH @539
 EXIT
 
 // Banter with Ajantis about Waterdeep
 
 CHAIN
-IF ~CombatCounter(0) InParty("AJANTIS")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("AJANTIS")
 See("AJANTIS")
 !StateCheck("AJANTIS",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAjantis2","LOCALS",0)~ THEN BSUFINCH SuFinchBigCity
 @540 DO ~SetGlobal("SUFinchAjantis2","LOCALS",1)~
 == %er_tutu%BAJANT @541
@@ -828,23 +962,26 @@ Global("SUFinchAjantis2","LOCALS",0)~ THEN BSUFINCH SuFinchBigCity
 EXIT
 
 CHAIN
-IF ~InParty("JAHEIRA")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("JAHEIRA")
 See("JAHEIRA")
 !StateCheck("JAHEIRA",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 AreaType(FOREST)
 Global("SUFinchJaheira4","LOCALS",0)~ THEN BSUFINCH SuFinchBoscoe 
 @552 DO ~SetGlobal("SUFinchJaheira4","LOCALS",1)~
-== %er_tutu%BJAHEI @553
+== %er_bjahei% @553
 == SUFINCH @554
-== %er_tutu%BJAHEI @555
+== %er_bjahei% @555
 == SUFINCH @556
-== %er_tutu%BJAHEI @557
+== %er_bjahei% @557
 == SUFINCH @558
-== %er_tutu%BJAHEI @559
+== %er_bjahei% @559
 == SUFINCH @560
-== %er_tutu%BJAHEI @561
+== %er_bjahei% @561
 == SUFINCH @562
-== %er_tutu%BJAHEI @563
+== %er_bjahei% @563
 = @564
 == SUFINCH @565
 EXIT
@@ -852,10 +989,12 @@ EXIT
 // Kivan banter about sharing silence.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0)
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
 InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchKivan1", "LOCALS", 0)~ THEN %er_tutu%BKIVAN SuFinchSilence
 @566 DO ~SetGlobal("SUFinchKivan1", "LOCALS", 1)~
 == BSUFINCH @567
@@ -867,9 +1006,12 @@ Global("SUFinchKivan1", "LOCALS", 0)~ THEN %er_tutu%BKIVAN SuFinchSilence
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("GARRICK")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("GARRICK")
 See("GARRICK")
 !StateCheck("GARRICK",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 LevelGT("Garrick", 3)
 HPPercentLT("Garrick",20)
 Global("SUFinchGarrick4","LOCALS",0)~ THEN BSUFINCH SuFinchOuchieGarrick
@@ -883,10 +1025,13 @@ Global("SUFinchGarrick4","LOCALS",0)~ THEN BSUFINCH SuFinchOuchieGarrick
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 AreaType(FOREST)
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchTiax3","LOCALS",0)~ THEN %er_tutu%BTIAX SuFinchAnts
 @582 DO ~SetGlobal("SUFinchTiax3","LOCALS",1)~
 == BSUFINCH @583
@@ -895,9 +1040,12 @@ Global("SUFinchTiax3","LOCALS",0)~ THEN %er_tutu%BTIAX SuFinchAnts
 EXIT
 
 CHAIN
-IF ~InParty("SUFINCH")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("SUFINCH")
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchImoen2","LOCALS",0)~ THEN %er_bimoen% SuFinchCandlekeep
 @586 DO ~SetGlobal("SUFinchImoen2","LOCALS",1)~                      
 == BSUFINCH @587
@@ -909,9 +1057,12 @@ Global("SUFinchImoen2","LOCALS",0)~ THEN %er_bimoen% SuFinchCandlekeep
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAlora3","GLOBAL",0)~ THEN %er_tutu%BALORA SuFinchYourFace
 @593 DO ~SetGlobal("SUFinchAlora3","GLOBAL",1)~
 == BSUFINCH @594
@@ -923,9 +1074,12 @@ Global("SUFinchAlora3","GLOBAL",0)~ THEN %er_tutu%BALORA SuFinchYourFace
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchSharteel2","LOCALS",0)~ THEN %er_tutu%BSHART SuFinchManGod
 @600 DO ~SetGlobal("SUFinchSharteel2","LOCALS",1)~
 == BSUFINCH @601
@@ -937,31 +1091,37 @@ EXIT
 // Jaheira
 
 CHAIN
-IF ~InParty("JAHEIRA")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("JAHEIRA")
 See("JAHEIRA")
 !StateCheck("JAHEIRA",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 !Dead("Khalid")
 Global("SUFinchJaheira2","GLOBAL",1)
 Global("SUFinchJaheira1","LOCALS",0)~ THEN BSUFINCH SuFinchLove
 @430 DO ~SetGlobal("SUFinchJaheira1","LOCALS",1)~
-== %er_tutu%BJAHEI IF  ~InParty("Skie")~ THEN @433   
-== %er_tutu%BJAHEI IF ~!InParty("Skie") InParty("Safana")~ THEN @435   
+== %er_bjahei% IF  ~InParty("Skie")~ THEN @433   
+== %er_bjahei% IF ~!InParty("Skie") InParty("Safana")~ THEN @435   
 == BSUFINCH @436
 =
 @437
-== %er_tutu%BJAHEI @438
+== %er_bjahei% @438
 == BSUFINCH @439
-== %er_tutu%BJAHEI @440
+== %er_bjahei% @440
 == BSUFINCH @441
-== %er_tutu%BJAHEI @442
+== %er_bjahei% @442
 == BSUFINCH @443
 EXIT
 
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAlora3","GLOBAL",1)
 Global("SUFinchXan2","LOCALS",1)~ THEN %er_tutu%BXANNN SuFinchYouSmileTooMuchNow
 @605 DO ~SetGlobal("SUFinchXan2","LOCALS",1)~
@@ -974,9 +1134,12 @@ EXIT
 // Banter with Yeslick about recording his story, ends with Yeslick saying some tragedies should be forgotten.
 
 CHAIN
-IF ~ CombatCounter(0) InParty("Yeslick")
+IF ~ CombatCounter(0) !See([ENEMY])
+InParty("Yeslick")
 See("Yeslick")
 !StateCheck("Yeslick",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchYeslick3","LOCALS",0)~ THEN BSUFINCH SuYesLegacy
 @610 DO ~SetGlobal("SUFinchYeslick3","LOCALS",1)~
 == %er_tutu%BYESLI @611
@@ -996,9 +1159,12 @@ EXIT
 
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 AreaType(CITY)
 Global("SUFinchFaldorn4","LOCALS",0)~ THEN %er_tutu%BFALDO SuFinchCobblestonesSux
 @621 DO ~SetGlobal("SUFinchFaldorn4","LOCALS",1)~
@@ -1012,9 +1178,12 @@ Global("SUFinchFaldorn4","LOCALS",0)~ THEN %er_tutu%BFALDO SuFinchCobblestonesSu
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("KIVAN")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("KIVAN")
 See("KIVAN")
 !StateCheck("KIVAN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchKivan2","LOCALS",0)~ THEN BSUFINCH SuFinchLookStraightAhead
 @628 DO ~SetGlobal("SUFinchKivan2","LOCALS",1)~
 == %er_tutu%BKIVAN @629
@@ -1031,9 +1200,12 @@ EXIT
 // Banter with Ajantis about mapping a dungeon.
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchAjantis3","LOCALS",0)
 AreaType(DUNGEON)~ THEN %er_tutu%BAJANT SuFinchCourageLecture
 @636 DO ~SetGlobal("SUFinchAjantis3","LOCALS",1)~
@@ -1045,12 +1217,15 @@ EXIT
 //Banter about cloud watching. Most awful stupid banter ever.
 
 CHAIN
-IF WEIGHT #2 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #2 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
 InParty("ALORA")
 See("ALORA")
 !StateCheck("ALORA",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 AreaType(OUTDOOR)
 Global("SUFinchImoen2","LOCALS",0)~ THEN %er_bimoen% SuFinchCloudWatching
 @640 DO ~SetGlobal("SUFinchImoen2","LOCALS",1)~
@@ -1064,9 +1239,12 @@ Global("SUFinchImoen2","LOCALS",0)~ THEN %er_bimoen% SuFinchCloudWatching
 EXIT
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchXan3","LOCALS",1)~ THEN %er_tutu%BXANNN SuFinchShesSmilingAgain
 @647 DO ~SetGlobal("SUFinchXan3","LOCALS",1)~
 == BSUFINCH @648
@@ -1076,9 +1254,12 @@ Global("SUFinchXan3","LOCALS",1)~ THEN %er_tutu%BXANNN SuFinchShesSmilingAgain
 EXIT
 
 CHAIN
-IF ~CombatCounter(0) InParty("Kagain")
+IF ~CombatCounter(0) !See([ENEMY])
+InParty("Kagain")
 See("Kagain")
 !StateCheck("Kagain",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchKagain2","GLOBAL",1)
 Global("SUFinchKagain3","LOCALS",0)~ THEN BSUFINCH SuFinchDoubleBooked
 @652 DO ~SetGlobal("SUFinchKagain3","LOCALS",1)~
@@ -1096,9 +1277,12 @@ EXIT
 //Banter where Faldorn complains about parchment paper, ink, vellum, stolen from nature. Deneir is an affront, the // enemy of the Oak Father
 
 CHAIN
-IF WEIGHT #10 ~CombatCounter(0) InParty("sufinch")
+IF WEIGHT #10 ~CombatCounter(0) !See([ENEMY])
+InParty("sufinch")
 See("sufinch")
 !StateCheck("sufinch",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
+InParty(Myself)
 Global("SUFinchFaldorn1","LOCALS",0)~ THEN %er_tutu%BFALDO SuFinchDeneirAsAffront
 @661 DO ~SetGlobal("SUFinchFaldorn1","LOCALS",1)~
 == BSUFINCH @662

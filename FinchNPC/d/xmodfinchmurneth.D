@@ -1,10 +1,13 @@
 
 
 CHAIN
-IF ~CombatCounter(0) 
+IF ~CombatCounter(0)
+!See([ENEMY])
 InParty("A#MURN")
+InParty(Myself)
 See("A#MURN")
 !StateCheck("A#MURN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 Global("FinchMurn1","GLOBAL",0)~ THEN BSUFINCH BlindAsASlime
 @960  DO ~SetGlobal("FinchMurn1","GLOBAL",1)~
 == BA#MURN @961 
@@ -18,9 +21,12 @@ EXIT
 
 CHAIN
 IF ~CombatCounter(0) 
+!See([ENEMY])
 InParty("A#MURN")
+InParty(Myself)
 See("A#MURN")
 !StateCheck("A#MURN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 InParty("%er_imoen%")
 See("%er_imoen%")
 !StateCheck("%er_imoen%",CD_STATE_NOTVALID)
@@ -43,9 +49,12 @@ EXIT
 // Remember check for Yeslick banter where Finch gets some gumption.
 CHAIN
 IF ~CombatCounter(0)
+!See([ENEMY])
 InParty("SUFINCH")
+InParty(Myself)
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 !Global("SUFinchYeslick2","GLOBAL",1)
 Global("FinchMurn3","LOCALS",0)~ THEN BA#MURN StinkyFear
 @978  DO ~SetGlobal("FinchMurn3","LOCALS",1)~
@@ -57,9 +66,12 @@ EXIT
 
 CHAIN
 IF ~CombatCounter(0)
+!See([ENEMY])
 InParty("SUFINCH")
+InParty(Myself)
 See("SUFINCH")
 !StateCheck("SUFINCH",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 Global("FinchMurn4","GLOBAL",0)~ THEN BA#MURN RU1337Slime
 @983  DO ~SetGlobal("FinchMurn4","GLOBAL",1)~
 == BSUFINCH @984 
@@ -74,9 +86,12 @@ EXIT
 
 CHAIN
 IF ~CombatCounter(0) 
+!See([ENEMY])
 InParty("A#MURN")
+InParty(Myself)
 See("A#MURN")
 !StateCheck("A#MURN",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 Global("FinchMurn1","GLOBAL",1)
 Global("FinchMurn4","GLOBAL",1)
 Global("FinchMurn5","GLOBAL",0)~ THEN BSUFINCH BaneFinchOrMurn

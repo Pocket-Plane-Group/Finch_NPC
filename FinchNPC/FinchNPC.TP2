@@ -1,7 +1,8 @@
 
 BACKUP ~FinchNPC/backup~
-AUTHOR ~llamababe@pocketplane.net~
-VERSION ~v4.0 BETA 7~
+//AUTHOR ~llamababe@pocketplane.net~
+SUPPORT ~https://forums.pocketplane.net/index.php?topic=18513.0~
+VERSION ~v5~
 README ~FinchNPC/FinchReadMe.html~
 
 ALWAYS
@@ -27,11 +28,10 @@ LANGUAGE ~German~
 
 BEGIN @14
 
-REQUIRE_PREDICATE GAME_IS ~tutu tutu_totsc bgee bgt~ @1145
+REQUIRE_PREDICATE GAME_IS ~tutu tutu_totsc bgee bgt eet~ @1145
 
 // Adds CD_STATE_NOTVALID state
-APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~
-UNLESS ~CD_STATE_NOTVALID~
+APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
 
 ADD_JOURNAL @68 @812 @802 @67 USING ~%er_tra_path%/english/sufinch.tra~
                                     ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
@@ -201,16 +201,15 @@ COPY ~FinchNPC/cre/sutrask.cre~ ~override/sutrask.cre~
   SAY NAME1 @46
   SAY NAME2 @46
 
-ACTION_IF FILE_EXISTS_IN_GAME ~%er_bimoen%.dlg~
- THEN BEGIN
-END
-ELSE BEGIN
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~%er_bimoen%.dlg~ BEGIN
   COMPILE EVALUATE_BUFFER ~FinchNPC/bimoen.d~
 END
 
-APPEND ~Interdia.2da~
-~%er_uimoen%        %er_bimoen%~
-UNLESS ~%er_uimoen%~
+ACTION_IF GAME_IS ~eet~ BEGIN
+	APPEND ~BGBANTER.2DA~ ~%er_uimoen%        %er_bimoen%~ UNLESS ~%er_uimoen%~
+END ELSE BEGIN
+	APPEND ~Interdia.2da~ ~%er_uimoen%        %er_bimoen%~ UNLESS ~%er_uimoen%~
+END
 
 //Go out on a limb and try to assign some death variables
 
@@ -256,6 +255,7 @@ ACTION_IF FILE_EXISTS ~override/J#INDIB.DLG~ AND NOT FILE_EXISTS
        COMPILE EVALUATE_BUFFER ~FinchNPC/d/xmodfinchindi.d~
          USING ~%er_tra_path%/english/sufinch.tra~
                ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+EXTEND_TOP ~J#INDI.bcs~ ~FinchNPC/scripts/append_j#indi.baf~ EVALUATE_BUFFER
 END
 
 //TotSC interjections
@@ -346,20 +346,50 @@ EXTEND_BOTTOM ~%er_2400%.bcs~ ~FinchNPC/scripts/append_ar2400.baf~ EVALUATE_BUFF
 EXTEND_BOTTOM ~%er_2600%.bcs~ ~FinchNPC/scripts/append_ar2600.baf~ EVALUATE_BUFFER
 EXTEND_TOP ~%er_4002%.bcs~ ~FinchNPC/scripts/append_ar4002.baf~ EVALUATE_BUFFER
 EXTEND_TOP ~%er_4804%.bcs~ ~FinchNPC/scripts/append_ar4804.baf~ EVALUATE_BUFFER
-EXTEND_TOP ~J#INDI.bcs~ ~FinchNPC/scripts/append_j#indi.baf~ EVALUATE_BUFFER
 
+
+// SoD/BGT compatibility: Finch leaves the party at transition.
+ACTION_IF (GAME_IS ~bgee~ AND GAME_INCLUDES ~sod~) OR (GAME_IS ~eet~) THEN BEGIN
+	EXTEND_TOP ~bd0103.bcs~ ~FinchNPC/scripts/append_bd0103.baf~
+END 
 ACTION_IF GAME_IS ~bgt~ THEN BEGIN
-  EXTEND_TOP ~aram00.bcs~ ~FinchNPC/scripts/append_aram00.baf~
+	EXTEND_TOP ~aram00.bcs~ ~FinchNPC/scripts/append_aram00.baf~
 END
 
 COMPILE EVALUATE_BUFFER ~FinchNPC/scripts/sufinch.baf~
 COMPILE EVALUATE_BUFFER ~FinchNPC/scripts/sufinchd.baf~
 
-APPEND ~PDialog.2da~
-~SUFINCH          SUFINCHP          SUFINCHJ          SUFINCHD  ~
-UNLESS ~SUFINCH~
-APPEND ~Interdia.2da~
-~SUFINCH       BSUFINCH~
-UNLESS ~SUFINCH~
+ACTION_IF GAME_IS ~eet~ BEGIN
+	APPEND ~BGDIALOG.2da~ ~SUFINCH          SUFINCHP          SUFINCHJ          SUFINCHD  ~
+		UNLESS ~SUFINCH~
+	APPEND ~BGBANTER.2da~ ~SUFINCH       BSUFINCH~                          		UNLESS ~SUFINCH~
+END ELSE BEGIN
+	APPEND ~PDialog.2da~  ~SUFINCH       SUFINCHP          SUFINCHJ          SUFINCHD  ~
+		UNLESS ~SUFINCH~
+	APPEND ~Interdia.2da~ ~SUFINCH       BSUFINCH~                          		UNLESS ~SUFINCH~
+END
 
 LAF HANDLE_AUDIO END
+
+//EET: add NPC to Fatespirit etc
+ACTION_IF GAME_IS ~eet~ BEGIN
+	ACTION_MATCH ~%LANGUAGE%~ WITH
+		~English~  BEGIN OUTER_SPRINT lng ~en_US~ END
+		~Francais~ BEGIN OUTER_SPRINT lng ~fr_FR~ END
+		~Espanol~  BEGIN OUTER_SPRINT lng ~es_ES~ END
+		~German~   BEGIN OUTER_SPRINT lng ~de_DE~ END
+		~Russian~  BEGIN OUTER_SPRINT lng ~ru_RU~ END
+	DEFAULT
+		OUTER_SPRINT lng ~en_US~
+	END
+	INCLUDE ~EET/other/EET_functions.tph~
+	LAF ~EET_NPC_TRANSITION~
+		INT_VAR
+			type = 1
+		STR_VAR
+			dv = "SUFINCH"
+			override_BG1 = "SUFINCH"
+			traFile = EVAL "EET/lang/%lng%/compatibility.tra"
+			string = "@5000002"
+	END
+END

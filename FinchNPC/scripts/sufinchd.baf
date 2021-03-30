@@ -32,6 +32,8 @@ InParty(Myself)
 InParty("%er_imoen%")
 !Dead("%er_imoen%")
 See("%er_imoen%")
+!StateCheck("%er_imoen%",CD_STATE_NOTVALID)
+!StateCheck(Myself,CD_STATE_NOTVALID)
 Global("SUFinchImoenPrank","GLOBAL",0)
 THEN
 RESPONSE #100

@@ -144,7 +144,7 @@ END
 
 IF ~~ THEN BEGIN SuFinchTeaAlone
 SAY @120
-IF ~~ THEN DO ~ SetGlobal("SURedSheafMeet", "GLOBAL", 1)~ EXIT
+IF ~~ THEN DO ~SetGlobal("SURedSheafMeet", "GLOBAL", 1)~ EXIT
 END
 
 IF ~~ THEN BEGIN SuFinchModest
@@ -277,7 +277,7 @@ IF ~~ THEN BEGIN SuFinchFarewell
 SAY @153
 =
 @154
-IF ~~ THEN DO ~ SetGlobal("SURedSheafMeet", "GLOBAL", 1)~ EXIT
+IF ~~ THEN DO ~SetGlobal("SURedSheafMeet", "GLOBAL", 1)~ EXIT
 END
 
 IF ~~ THEN BEGIN SuFinchJoin

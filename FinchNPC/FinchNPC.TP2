@@ -2,7 +2,7 @@
 BACKUP ~FinchNPC/backup~
 //AUTHOR ~llamababe@pocketplane.net~
 SUPPORT ~https://forums.pocketplane.net/index.php?topic=18513.0~
-VERSION ~v5~
+VERSION ~v5.1~
 README ~FinchNPC/FinchReadMe.html~
 
 ALWAYS
@@ -25,6 +25,10 @@ LANGUAGE ~German~
          ~german~
          ~FinchNPC/tra/english/sufinch.TRA~
          ~FinchNPC/tra/german/sufinch.TRA~
+LANGUAGE ~Russian~
+         ~russian~
+         ~FinchNPC/tra/english/sufinch.TRA~
+         ~FinchNPC/tra/russian/sufinch.TRA~
 
 BEGIN @14
 

@@ -267,7 +267,7 @@ END
 // Macro to handle multiple tra encodings (slightly adapted from Wisp's original code)
 OUTER_SPRINT er_game ~sufinch~
 DEFINE_ACTION_MACRO bgee_language BEGIN
-  ACTION_IF GAME_IS ~bgee bg2ee~ BEGIN
+  ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
     LOAD_TRA ~%MOD_FOLDER%/tra/bgee/english/%er_game%.tra~
     LOAD_TRA ~%MOD_FOLDER%/tra/bgee/%LANGUAGE%/%er_game%.tra~
   END

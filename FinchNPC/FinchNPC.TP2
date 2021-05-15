@@ -100,6 +100,7 @@ COPY ~FinchNPC/cre/sufinch1.cre~ ~override/sufinch1.cre~
   SAY BIO @45
   WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+  REPLACE_TEXTUALLY ~misc3p~ ~sumisc3p~ (8)
 
 COPY ~FinchNPC/cre/sufinch2.cre~ ~override/sufinch2.cre~
   SAY NAME1 @0
@@ -150,6 +151,7 @@ COPY ~FinchNPC/cre/sufinch2.cre~ ~override/sufinch2.cre~
   SAY BIO @45
   WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+  REPLACE_TEXTUALLY ~misc3p~ ~sumisc3p~ (8)
 
 COPY ~FinchNPC/cre/sufinch4.cre~ ~override/sufinch4.cre~
   SAY NAME1 @0
@@ -200,6 +202,7 @@ COPY ~FinchNPC/cre/sufinch4.cre~ ~override/sufinch4.cre~
   SAY BIO @45
   WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
+  REPLACE_TEXTUALLY ~misc3p~ ~sumisc3p~ (8)
 
 COPY ~FinchNPC/cre/sutrask.cre~ ~override/sutrask.cre~
   SAY NAME1 @46
@@ -321,12 +324,12 @@ COPY ~FinchNPC/items/sufbookB.itm~ ~override/sufbookB.itm~
 //SAY NAME2 @60
 //  SAY DESC @61
 
-// Shameless editing of Glasses of Identification
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN
-  COPY ~FinchNPC/items/misc3p.itm~ ~override/misc3p.itm~
+// Shameless editing of Glasses of Identification - misc3p -> sumisc3p - compatibilyty with BoneHill
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~misc3p.itm~ THEN BEGIN
+  COPY ~FinchNPC/items/misc3p.itm~ ~override/sumisc3p.itm~
     LAUNCH_PATCH_MACRO ~ER_PATCH_GLASSES~
 END ELSE BEGIN
-  COPY_EXISTING ~misc3p.itm~ ~override/misc3p.itm~
+  COPY_EXISTING ~misc3p.itm~ ~override/sumisc3p.itm~
     LAUNCH_PATCH_MACRO ~ER_PATCH_GLASSES~
 END
 
@@ -354,7 +357,28 @@ EXTEND_TOP ~%er_4804%.bcs~ ~FinchNPC/scripts/append_ar4804.baf~ EVALUATE_BUFFER
 
 // SoD/BGT compatibility: Finch leaves the party at transition.
 ACTION_IF (GAME_IS ~bgee~ AND GAME_INCLUDES ~sod~) OR (GAME_IS ~eet~) THEN BEGIN
-	EXTEND_TOP ~bd0103.bcs~ ~FinchNPC/scripts/append_bd0103.baf~
+	COPY_EXISTING ~BD0103.bcs~ ~override~
+		DECOMPILE_AND_PATCH BEGIN
+			LPF GET_SCRIPT_BLOCK STR_VAR search_regexp = ~BD_HAS_BAELOTHS_ROBE~ RET script_block END
+			TEXT_SPRINT ~add_block~ ~%script_block%
+
+IF
+	OR(2)
+		InParty("sufinch")
+		InPartyAllowDead("sufinch")
+	GlobalLT("BD_PLOT","GLOBAL",51)
+THEN
+	RESPONSE #100
+		ActionOverride("sufinch",LeaveParty())
+		ActionOverride("sufinch",ChangeAIScript("",DEFAULT))
+		ActionOverride("sufinch",ClearAllActions())
+		ActionOverride("PlayerChest00",TakeCreatureItems("sufinch",BACKPACK))
+    	SmallWait(1)
+    	ActionOverride("sufinch",DestroySelf())
+    	Continue()
+END~
+			REPLACE_TEXTUALLY ~%script_block%~ ~%add_block%~
+		END
 END 
 ACTION_IF GAME_IS ~bgt~ THEN BEGIN
 	EXTEND_TOP ~aram00.bcs~ ~FinchNPC/scripts/append_aram00.baf~

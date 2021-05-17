@@ -480,7 +480,7 @@ Global("SUFinchBranwen2","LOCALS",0)~ THEN BSUFINCH SuFinchStoned
 @354
 =
 @355
-== SUFINCH @356
+== BSUFINCH @356
 EXIT
 
 CHAIN

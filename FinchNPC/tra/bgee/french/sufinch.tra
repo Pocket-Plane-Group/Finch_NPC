@@ -1136,6 +1136,10 @@ Ajouter :
 Incorporer la crème de navet froide dans la mixture de crème fouettée. Laissez complètement refroidir avant de servir. Plat pour 6.~
 @1150 = ~Merci !~
 
+//Finch
+@5000002 = ~Faites venir Finch, la gnome clerc.~
+//Gavin
+
 // WeiDU prompts
 @-1000= "Le mod %TP2_FILE_NAME% contient"
 @-1001= "composants optionnels distincts.

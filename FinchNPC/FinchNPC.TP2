@@ -2,7 +2,7 @@
 BACKUP ~FinchNPC/backup~
 //AUTHOR ~llamababe@pocketplane.net~
 SUPPORT ~https://forums.pocketplane.net/index.php?topic=18513.0~
-VERSION ~v5.3~
+VERSION ~v6.0~
 README ~FinchNPC/FinchReadMe.html~
 
 ALWAYS
@@ -31,7 +31,7 @@ LANGUAGE ~Russian~
          ~FinchNPC/tra/russian/sufinch.TRA~
 
 BEGIN @14
-
+LABEL FinchNPC-main
 REQUIRE_PREDICATE GAME_IS ~tutu tutu_totsc bgee bgt eet~ @1145
 
 // Adds CD_STATE_NOTVALID state

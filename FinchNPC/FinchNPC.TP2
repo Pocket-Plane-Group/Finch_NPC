@@ -2,7 +2,7 @@
 BACKUP ~FinchNPC/backup~
 //AUTHOR ~llamababe@pocketplane.net~
 SUPPORT ~https://forums.pocketplane.net/index.php?topic=18513.0~
-VERSION ~v5.2~
+VERSION ~v5.3~
 README ~FinchNPC/FinchReadMe.html~
 
 ALWAYS
@@ -424,7 +424,7 @@ ACTION_IF GAME_IS ~eet~ BEGIN
 		STR_VAR
 			dv = "SUFINCH"
 			override_BG1 = "SUFINCH"
-			traFile = EVAL "EET/lang/%lng%/compatibility.tra"
+			traFile = EVAL "%er_tra_path%/%LANGUAGE%/sufinch.tra"
 			string = "@5000002"
 	END
 END

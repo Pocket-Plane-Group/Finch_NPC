@@ -290,19 +290,6 @@ BEGIN
   END
 END
 
-// Patch Glasses of Identification for Finch
-DEFINE_PATCH_MACRO ~ER_PATCH_GLASSES~ 
-BEGIN
-  //PATCH_IF GAME_IS ~bgee tutu tutu_totsc eet bgt~ BEGIN
-    SAY NAME1 @60
-    SAY NAME2 @60
-    SAY UNIDENTIFIED_DESC @61
-    SAY DESC @61
-  //END
-  READ_LONG 0x64 er_ability_offset
-  WRITE_ASCII %er_ability_offset%+4 ~IMISC3P~ #8
-END
-
 DEFINE_PATCH_FUNCTION GET_SCRIPT_BLOCK
 INT_VAR
   start_offset  = 0

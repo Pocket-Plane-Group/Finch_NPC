@@ -55,7 +55,6 @@ COPY ~FinchNPC/cre/sufinchi.cre~ ~override/sufinchi.cre~
   WRITE_LONG PICKED_POCKET 0xffffffff
   WRITE_LONG HIDDEN_IN_SHADOWS 0xffffffff
   WRITE_LONG SET_A_TRAP 0xffffffff
-  WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
 
 COPY ~FinchNPC/cre/sufinch1.cre~ ~override/sufinch1.cre~
@@ -105,9 +104,7 @@ COPY ~FinchNPC/cre/sufinch1.cre~ ~override/sufinch1.cre~
   SAY HIDDEN_IN_SHADOWS @43
   SAY SET_A_TRAP @44
   SAY BIO @45
-  WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
-  REPLACE_TEXTUALLY ~misc3p~ ~sumisc3p~ (8)
 
 COPY ~FinchNPC/cre/sufinch2.cre~ ~override/sufinch2.cre~
   SAY NAME1 @0
@@ -156,9 +153,7 @@ COPY ~FinchNPC/cre/sufinch2.cre~ ~override/sufinch2.cre~
   SAY HIDDEN_IN_SHADOWS @43
   SAY SET_A_TRAP @44
   SAY BIO @45
-  WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
-  REPLACE_TEXTUALLY ~misc3p~ ~sumisc3p~ (8)
 
 COPY ~FinchNPC/cre/sufinch4.cre~ ~override/sufinch4.cre~
   SAY NAME1 @0
@@ -207,9 +202,7 @@ COPY ~FinchNPC/cre/sufinch4.cre~ ~override/sufinch4.cre~
   SAY HIDDEN_IN_SHADOWS @43
   SAY SET_A_TRAP @44
   SAY BIO @45
-  WRITE_BYTE 0x237 2 // set SEX to female
   LAUNCH_PATCH_MACRO ~ER_PATCH_ITEMS_ON_CRE~
-  REPLACE_TEXTUALLY ~misc3p~ ~sumisc3p~ (8)
 
 COPY ~FinchNPC/cre/sutrask.cre~ ~override/sutrask.cre~
   SAY NAME1 @46
@@ -282,7 +275,9 @@ END
 
 COPY ~FinchNPC/graphics~ ~override~
 COPY ~FinchNPC/graphics/%er_port%~ ~override~
+
 COPY ~FinchNPC/items/sufbag1.sto~ ~override/sufbag1.sto~
+
 COPY ~FinchNPC/items/sufbag1.itm~ ~override/sufbag1.itm~
   SAY NAME1 @48
   SAY NAME2 @48
@@ -313,6 +308,18 @@ COPY ~FinchNPC/items/sufbook5.itm~ ~override/sufbook5.itm~
   SAY NAME2 @58
   SAY DESC @59
 
+COPY ~FinchNPC/items/sufglass.itm~ ~override/sufglass.itm~
+  SAY NAME1 @60
+  SAY NAME2 @60
+  SAY UNIDENTIFIED_DESC @61
+  SAY DESC @61
+
+ACTION_IF FILE_EXISTS_IN_GAME ~item_use.2da~
+BEGIN
+  APPEND ~item_use.2da~ ~sufglass SUFINCH   9382    2~ UNLESS "sufglass"
+  //APPEND ~item_use.2da~ ~sufglas2 SUFINCH   9382    2~ UNLESS "sufglass"
+END
+
 COPY ~FinchNPC/items/sufbookA.itm~ ~override/sufbookA.itm~
   SAY NAME1 @1146
   SAY NAME2 @1146
@@ -322,23 +329,6 @@ COPY ~FinchNPC/items/sufbookB.itm~ ~override/sufbookB.itm~
   SAY NAME1 @1148
   SAY NAME2 @1148
   SAY DESC @1149
-
-//COPY ~FinchNPC/items/sufglass.spl~ ~override/sufglass.spl~
-//COPY ~FinchNPC/items/sufglass.eff~ ~override/sufglass.eff~
-//COPY ~FinchNPC/items/sufglas2.eff~ ~override/sufglas2.eff~
-//COPY ~FinchNPC/items/sufglass.itm~ ~override/sufglass.itm~
-//  SAY NAME1 @60
-//SAY NAME2 @60
-//  SAY DESC @61
-
-// Shameless editing of Glasses of Identification - misc3p -> sumisc3p - compatibilyty with BoneHill
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~misc3p.itm~ THEN BEGIN
-  COPY ~FinchNPC/items/misc3p.itm~ ~override/sumisc3p.itm~
-    LAUNCH_PATCH_MACRO ~ER_PATCH_GLASSES~
-END ELSE BEGIN
-  COPY_EXISTING ~misc3p.itm~ ~override/sumisc3p.itm~
-    LAUNCH_PATCH_MACRO ~ER_PATCH_GLASSES~
-END
 
 //COPY_EXISTING ~%er_RedSheafL1%.are~ ~override/%er_RedSheafL1%.are~
 //  WRITE_EVALUATED_ASCII 0x94 ~%er_3357%~

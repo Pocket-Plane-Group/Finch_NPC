@@ -80,7 +80,18 @@
   
   Finch is not shy to point out that she is nearly blind without her glasses. Poor vision seems to run in certain gnome families, and she is not an exception. While perhaps not as stylish as some, this pair of lenses does  assist Finch in her pursuit of knowledge and lore, and the ability to see items in focus certainly can aid the young Priest in having a sudden brainstorm of information at her fingertips.
   
-  Bonus: Allows the spell Identify three times per day.~
+Equipped abilities:
+- Lore: +20
+
+Charge Abilities:
+- Insight (1/day):
+  Grants +50 Lore for 1 turn.
+- Invisibility Purge (1/day):
+  Reveals all invisible creatures.
+- Clairvoyance (1/day):
+  Reveals the terrain features of the immediate area.
+
+Weight: 0~
 @62   = ~I'll show you fiesty!~ [SUFINC47]
 @63   = ~Don't you bully me!~ [SUFINC48]
 @64   = ~I'll teach you a lesson you'll not soon forget!~ [SUFINC09]

@@ -209,7 +209,7 @@ COPY ~FinchNPC/cre/sutrask.cre~ ~override/sutrask.cre~
   SAY NAME2 @46
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~%er_bimoen%.dlg~ BEGIN
-  COMPILE EVALUATE_BUFFER ~FinchNPC/bimoen.d~
+  COMPILE EVALUATE_BUFFER ~FinchNPC/d/bimoen.d~
 END
 
 ACTION_IF GAME_IS ~eet~ BEGIN
@@ -245,7 +245,7 @@ COMPILE EVALUATE_BUFFER ~FinchNPC/d/sufinchj.d~
         ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
 
 //Mur'Neth-Finch banter
-ACTION_IF FILE_EXISTS ~override/BA#MURN.DLG~ AND NOT FILE_EXISTS
+ACTION_IF FILE_EXISTS_IN_GAME ~BA#MURN.DLG~ AND NOT FILE_EXISTS
 ~override/FINCHMURNETH.XXX~
        THEN BEGIN
        COPY_EXISTING ~SW1H01.ITM~ ~override/FINCHMURNETH.XXX~
@@ -255,7 +255,7 @@ ACTION_IF FILE_EXISTS ~override/BA#MURN.DLG~ AND NOT FILE_EXISTS
 END
 
 //Indira-Finch banter
-ACTION_IF FILE_EXISTS ~override/J#INDIB.DLG~ AND NOT FILE_EXISTS
+ACTION_IF FILE_EXISTS_IN_GAME ~J#INDIB.DLG~ AND NOT FILE_EXISTS
 ~override/INDIRAFINCH.XXX~
        THEN BEGIN
        COPY_EXISTING ~SW1H01.ITM~ ~override/INDIRAFINCH.XXX~
@@ -264,6 +264,15 @@ ACTION_IF FILE_EXISTS ~override/J#INDIB.DLG~ AND NOT FILE_EXISTS
                ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
 EXTEND_TOP ~J#INDI.bcs~ ~FinchNPC/scripts/append_j#indi.baf~ EVALUATE_BUFFER
 END
+
+//Finch-Black Hearts BG1 xmod content
+ACTION_IF FILE_EXISTS_IN_GAME "wipresfi.dlg"
+BEGIN
+  COMPILE EVALUATE_BUFFER ~FinchNPC/d/xmodfinchblackhearts.d~
+    USING ~%er_tra_path%/english/sufinch.tra~
+          ~%er_tra_path%/%LANGUAGE%/sufinch.tra~
+END
+
 
 //TotSC interjections
 ACTION_IF FILE_EXISTS ~override/%er_tutu%ANDRIS.dlg~

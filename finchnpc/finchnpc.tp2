@@ -29,6 +29,9 @@ LANGUAGE ~Russian~
          ~russian~
          ~FinchNPC/tra/english/sufinch.TRA~
          ~FinchNPC/tra/russian/sufinch.TRA~
+LANGUAGE ~Schinese~
+         ~schinese~
+         ~FinchNPC/tra/schinese/sufinch.TRA~
 
 BEGIN @14
 LABEL FinchNPC-main
